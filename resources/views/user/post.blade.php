@@ -42,8 +42,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="sel1">Quận, Huyện:</label>
+                            <select class="form-control" id="districts-list">
+                                <option selected>--Chọn--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="sel1">Tỉnh Thành Phố:</label>
+                            <select class="form-control" id="provinces-list">
+                                <option selected>--Chọn--</option>
+                            </select>
+                        </div>
+                    </div>
             </form>
         </div>
     </div>
 </div>
+<script src="{{ asset('js/main.js') }}"></script>
 @endsection

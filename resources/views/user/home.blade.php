@@ -12,7 +12,8 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <div id="prloading"><span class="ld-text"><img src="{{ asset('images/connecting.gif') }}" width="48" border="0"></span></div>
+                <div id="prloading"><span class="ld-text"><img src="{{ asset('images/connecting.gif') }}" width="48"
+                            border="0"></span></div>
                 <div class="notification-nav visible-xs">
                     <div class="notification notification-button pull-right" data-original-title="" title=""><a
                             tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom"><i
@@ -49,14 +50,23 @@
                     </li>
                     <li>
                         <a href="{{ action('userController@info', ['id'=>Auth::guard('user')->user()->id]) }}">
-                            <img src="{{ asset(Auth::guard('user')->user()->user_avatar) }}" class="img-fluid img-circle" alt="" style="width: 30px; height: 30px;">
+                            <img title="Thông tin người dùng" data-container="body" data-placement="bottom" src="{{ asset(Auth::guard('user')->user()->user_avatar) }}"
+                                class="img-fluid img-circle" alt="" style="width: 30px; height: 30px;" data-toggle="popover"
+                                data-trigger="hover" data-popover-content="#list-popover">
                         </a>
+                        <div id="list-popover" style="display:none">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><span><i class="fa fa-info-circle"></i> {{Auth::guard('user')->user()->name}}</span></li>
+                                <li><span><i class="fa fa-envelope"></i> {{Auth::guard('user')->user()->email}}</span></li>
+                                <li><span><i class="fa fa-clock-o"></i> {{Auth::guard('user')->user()->last_sign_in_at}}</span></a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <a href="{{ action('userController@info', ['id'=>Auth::guard('user')->user()->id]) }}">
-                            <span class="visible-md-inline visible-lg-inline visible-xs-inline">
+                            <!--<span class="visible-md-inline visible-lg-inline visible-xs-inline">
                                 Hello, {{ Auth::guard('user')->user()->name }}
-                            </span>
+                            </span>-->
                         </a>
                     </li>
                 </ul>
@@ -71,8 +81,9 @@
                             <li><a href="/quan-ly"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
                             <li role="separator" class="divider hidden"></li>
                             @if (Auth::check())
-                             <li>
-                                 <a href="{{ action('userController@info', ['id'=>Auth::user()->id]) }}"><i class="fa fa-user fa-fw"></i> Thông tin tài khoản
+                            <li>
+                                <a href="{{ action('userController@info', ['id'=>Auth::user()->id]) }}"><i class="fa fa-user fa-fw"></i>
+                                    Thông tin tài khoản
                                 </a>
                             </li>
                             <li><a href="/mat-khau"><i class="fa fa-key fa-fw"></i> Đổi mật khẩu</a></li>
@@ -96,13 +107,24 @@
         </div>
     </nav>
     @section('pgContent')
-        
+
     @show
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="/bootstrap/dist/js/jquery.min.js"><\/script>')
     </script>
     <script src="https://697f684f1.vws.vegacdn.vn/rvn/index.js?v2018.10.15.7"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                content: function () {
+                    var elementId = $(this).attr("data-popover-content");
+                    return $(elementId).html();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

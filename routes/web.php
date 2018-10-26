@@ -36,6 +36,16 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('dang-tin', function() {
         return view('user.post');
     })->name('dangtin');
+
+    Route::get('provinces-data', function(){
+        $data = App\Provinces::all('province_id', 'province_name');
+        return response()->json($data);
+    });
+
+    Route::get('districts-data', function(){
+        $data = App\Districts::all('province_id', 'districts_name');
+        return response()->json($data);
+    });
 });
 Route::get('/index', 'postController@index');
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
