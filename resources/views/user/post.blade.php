@@ -1,6 +1,7 @@
 @extends('user.baseuser')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 @section('rightPage')
 <div class="col-md-7 col-sm-7">
     <div class="rows right-side">
@@ -11,7 +12,10 @@
             </div>
 
             <form>
-                <div class="row">
+                {{ csrf_token() }}
+                <input type="hidden" name="user_id">
+                <input type="hidden" name="fulladdress" id="fulladdress">
+                <div class="row row-post">
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="sel1">Chọn loại tin:</label>
@@ -34,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row row-post">
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="comment">Nội dung:</label>
@@ -42,14 +46,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row row-post">
                     <div class="col-xs-12">
                         <fieldset>
                             <legend>Địa chỉ</legend>
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="sel1">Địa chỉ</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="address">
                                 </div>
                             </div>
                             <div class="col-xs-3">
@@ -71,7 +75,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row row-post">
                     <div class="col-xs-12">
                         <fieldset>
                             <legend>Thông tin thêm:</legend>
@@ -95,6 +99,12 @@
                             </div>
                         </fieldset>
                     </div>
+                </div>
+                <div class="row row-post">
+                    <center>
+                        <input type="submit" id="dangbai" class="btn btn-primary" value="Đăng bài">
+                        <button id="nut">nut</button>
+                    </center>
                 </div>
             </form>
         </div>

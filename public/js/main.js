@@ -15,9 +15,15 @@ $(document).ready(function () {
             $.each(data, function(key, entry) {
                 // console.log(province + ' ' + entry.province_id)
                 if (province == entry.province_id){
-                    district.append($('<option></option>').attr('value', entry.districts_id).text(entry.districts_name))
+                    district.append($('<option></option>').attr('value', entry.districts_name).text(entry.districts_name))
                 }
             })
         })
+    })
+
+    $('#nut').on('click', function(){
+        let address1 = $('#address').val()
+        let address2 = $('#districts-list').val()
+        let address3 = $('#provinces-list').val() 
     })
 });

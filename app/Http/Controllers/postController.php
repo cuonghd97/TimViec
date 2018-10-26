@@ -7,6 +7,8 @@ use App\posts;
 use App\User;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DB;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
 class postController extends Controller
 {
@@ -92,5 +94,11 @@ class postController extends Controller
         $post = posts::find($id);
         $name = User::find($post->user_id);
         return view('viewpost', compact(['post', 'name']));
+    }
+
+    //Thêm bài đăng mới
+    public function addPost($request){
+        $po = new post();
+        $po->post_id = Uuid::uuid1();
     }
 }

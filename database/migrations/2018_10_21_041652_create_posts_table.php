@@ -26,6 +26,8 @@ class CreatePostsTable extends Migration
             $table->integer('salary');
             $table->string('gender', 191);
             $table->string('address', 191);
+            $table->string('district', 191);
+            $table->string('province', 191);
             $table->integer('views');
             $table->timestamps();
         });
