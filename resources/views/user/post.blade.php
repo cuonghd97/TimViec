@@ -43,22 +43,59 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="sel1">Quận, Huyện:</label>
-                            <select class="form-control" id="districts-list">
-                                <option selected>--Chọn--</option>
-                            </select>
-                        </div>
+                    <div class="col-xs-12">
+                        <fieldset>
+                            <legend>Địa chỉ</legend>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="sel1">Địa chỉ</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="sel1">Quận, Huyện:</label>
+                                    <select class="form-control" id="districts-list">
+                                        <option selected>--Chọn--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="sel1">Tỉnh Thành Phố:</label>
+                                    <select class="form-control" id="provinces-list">
+                                        <option selected>--Chọn--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="sel1">Tỉnh Thành Phố:</label>
-                            <select class="form-control" id="provinces-list">
-                                <option selected>--Chọn--</option>
-                            </select>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <fieldset>
+                            <legend>Thông tin thêm:</legend>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label for="sel1">Giới tính</label>
+                                        <select class="form-control" id="gender-list">
+                                            <option selected>--Chọn--</option>
+                                            <option>Nam</option>
+                                            <option>Nữ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label for="sel1">Mức lương:</label>
+                                        <input type="text" name="salary" id="salary" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
+                </div>
             </form>
         </div>
     </div>

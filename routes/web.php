@@ -49,6 +49,3 @@ Route::group(['prefix' => 'user'], function () {
 });
 Route::get('/index', 'postController@index');
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
-Route::get('/postvv', function(){
-    return view('viewpost');
-});

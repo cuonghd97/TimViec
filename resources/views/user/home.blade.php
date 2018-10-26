@@ -54,6 +54,7 @@
                                 class="img-fluid img-circle" alt="" style="width: 30px; height: 30px;" data-toggle="popover"
                                 data-trigger="hover" data-popover-content="#list-popover">
                         </a>
+                        <!--Khi hover vào thì hiện ra thông tin người dùng-->
                         <div id="list-popover" style="display:none">
                             <ul class="nav nav-pills nav-stacked">
                                 <li><span><i class="fa fa-info-circle"></i> {{Auth::guard('user')->user()->name}}</span></li>
@@ -77,7 +78,7 @@
                             aria-expanded="false"><i class="fa fa-server fa-fw" aria-hidden="true"></i> Thông tin <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/dang-tin"><i class="fa fa-commenting fa-fw rvn-blue"></i> Đăng tin</a></li>
+                            <li><a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw rvn-blue"></i> Đăng tin</a></li>
                             <li><a href="/quan-ly"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
                             <li role="separator" class="divider hidden"></li>
                             @if (Auth::check())
