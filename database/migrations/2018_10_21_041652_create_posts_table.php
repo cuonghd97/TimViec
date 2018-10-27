@@ -15,20 +15,21 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('post_id', 191);
-            $table->string('user_id', 191);
-            $table->string('title', 191);
-            $table->text('content');
-            $table->string('type', 191);
+            $table->string('post_id', 191)->nullable();
+            $table->string('user_id', 191)->nullable();
+            $table->string('title', 191)->nullable();
+            $table->text('content')->nullable();
+            $table->string('type', 191)->nullable();
             $table->string('image', 191)->default('images/posts/landscape.jpeg');
-            $table->integer('age');
-            $table->string('experience', 191);
-            $table->integer('salary');
-            $table->string('gender', 191);
-            $table->string('address', 191);
-            $table->string('district', 191);
-            $table->string('province', 191);
-            $table->integer('views');
+            $table->integer('age')->nullable();
+            $table->string('experience', 191)->nullable();
+            $table->string('type_post', 191)->nullable();
+            $table->integer('salary')->nullable();
+            $table->string('gender', 191)->nullable();
+            $table->string('address', 191)->nullable();
+            $table->string('district', 191)->nullable();
+            $table->string('province', 191)->nullable();
+            $table->integer('views')->nullable();
             $table->timestamps();
         });
     }

@@ -36,7 +36,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('dang-tin', function() {
         return view('user.post');
     })->name('dangtin');
-
+    Route::post('addpost', 'postController@addPost');
+    
     Route::get('provinces-data', function(){
         $data = App\Provinces::all('province_id', 'province_name');
         return response()->json($data);

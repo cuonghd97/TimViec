@@ -97,8 +97,21 @@ class postController extends Controller
     }
 
     //Thêm bài đăng mới
-    public function addPost($request){
-        $po = new post();
+    public function addPost(Request $request){
+        $po = new posts();
         $po->post_id = Uuid::uuid1();
+        $po->user_id = $request->user_id;
+        $po->type_post = $request->typepost;
+        $po->type = $request->type;
+        $po->title = $request->title;
+        $po->content = $request->content;
+        $po->address = $request->address;
+        $po->district = $request->districts_list;
+        $po->province = $request->provinces_list;
+        $po->age = $request->age;
+        $po->salary = $request->salary;
+        $po->gender = $request->gender_list;
+        $po->save();
+        return redirect()->route('dangtin');
     }
 }

@@ -11,15 +11,15 @@
                 <i class="fa fa-info-circle fa-fw"></i> Đăng bài
             </div>
 
-            <form>
-                {{ csrf_token() }}
-                <input type="hidden" name="user_id">
+            <form method="POST" action="{{ action('postController@addPost') }}">
+                {{ csrf_field() }}
+                <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->user_id }}">
                 <input type="hidden" name="fulladdress" id="fulladdress">
                 <div class="row row-post">
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="sel1">Chọn loại tin:</label>
-                            <select class="form-control">
+                            <select class="form-control" name="typepost">
                                 <option selected>--Chọn--</option>
                                 <option>Người tìm việc</option>
                                 <option>Tìm người giúp việc</option>
@@ -29,7 +29,7 @@
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="sel1">Loại công việc:</label>
-                            <select class="form-control">
+                            <select class="form-control" name="type">
                                 <option selected>--Chọn--</option>
                                 <option>Giúp việc theo giờ</option>
                                 <option>Giúp việc fulltime</option>
@@ -39,10 +39,18 @@
                     </div>
                 </div>
                 <div class="row row-post">
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <label for="comment">Tiêu đề:</label>
+                            <input type="text" name="title" id="title" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-post">
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="comment">Nội dung:</label>
-                            <textarea class="form-control" rows="10" id="comment"></textarea>
+                            <textarea class="form-control" rows="10" id="content" name="content"></textarea>
                         </div>
                     </div>
                 </div>
@@ -53,13 +61,13 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="sel1">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="address">
+                                    <input type="text" class="form-control" id="address" name="address">
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="sel1">Quận, Huyện:</label>
-                                    <select class="form-control" id="districts-list">
+                                    <select class="form-control" id="districts_list" name="districts_list">
                                         <option selected>--Chọn--</option>
                                     </select>
                                 </div>
@@ -67,7 +75,7 @@
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="sel1">Tỉnh Thành Phố:</label>
-                                    <select class="form-control" id="provinces-list">
+                                    <select class="form-control" id="provinces_list" name="provinces_list">
                                         <option selected>--Chọn--</option>
                                     </select>
                                 </div>
@@ -83,7 +91,7 @@
                                 <div class="col-xs-4">
                                     <div class="form-group">
                                         <label for="sel1">Giới tính</label>
-                                        <select class="form-control" id="gender-list">
+                                        <select class="form-control" id="gender_list" name="gender_list">
                                             <option selected>--Chọn--</option>
                                             <option>Nam</option>
                                             <option>Nữ</option>
@@ -96,6 +104,12 @@
                                         <input type="text" name="salary" id="salary" class="form-control">
                                     </div>
                                 </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label for="sel1">Tuổi:</label>
+                                        <input type="text" name="age" id="age" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </fieldset>
                     </div>
@@ -103,7 +117,6 @@
                 <div class="row row-post">
                     <center>
                         <input type="submit" id="dangbai" class="btn btn-primary" value="Đăng bài">
-                        <button id="nut">nut</button>
                     </center>
                 </div>
             </form>
