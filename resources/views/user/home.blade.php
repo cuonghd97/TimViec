@@ -59,7 +59,8 @@
                             <ul class="nav nav-pills nav-stacked">
                                 <li><span><i class="fa fa-info-circle"></i> {{Auth::guard('user')->user()->name}}</span></li>
                                 <li><span><i class="fa fa-envelope"></i> {{Auth::guard('user')->user()->email}}</span></li>
-                                <li><span><i class="fa fa-clock-o"></i> {{Auth::guard('user')->user()->last_sign_in_at}}</span></a></li>
+                                <li><span><i class="fa fa-clock-o"></i>
+                                        {{Auth::guard('user')->user()->last_sign_in_at}}</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -78,7 +79,8 @@
                             aria-expanded="false"><i class="fa fa-server fa-fw" aria-hidden="true"></i> Thông tin <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw rvn-blue"></i> Đăng tin</a></li>
+                            <li><a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw rvn-blue"></i> Đăng
+                                    tin</a></li>
                             <li><a href="/quan-ly"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
                             <li role="separator" class="divider hidden"></li>
                             @if (Auth::check())
@@ -107,8 +109,12 @@
             </div>
         </div>
     </nav>
+    <!-- Các bản tin được hiển thị ở đây-->
+    
+    <!--Kết thúc hiển thị-->
+    
     @section('pgContent')
-
+    
     @show
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>

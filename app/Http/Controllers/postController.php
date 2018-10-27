@@ -24,6 +24,12 @@ class postController extends Controller
     	return view('index', ['posts' => $posts]);
     }
 
+    public function userpost()
+    {
+        $posts = posts::all();
+        return view('user.index', ['posts' => $posts]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
