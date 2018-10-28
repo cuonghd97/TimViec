@@ -118,6 +118,11 @@ class postController extends Controller
         $po->salary = $request->salary;
         $po->gender = $request->gender_list;
         $po->save();
+        if ($request->hasFile('avatar')){
+            $po->image = 'images/posts/'.$po->post_id;
+            $po->save();
+            $request->file('avatar')->move('images/posts', $po->post_id);
+        }
         return redirect()->route('dangtin');
     }
 }

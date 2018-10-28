@@ -48,6 +48,11 @@ Route::group(['prefix' => 'user'], function () {
         return response()->json($data);
     });
 
+    Route::get('typework-data', function() {
+        $data = App\worktype::all('work_id', 'work_type');
+        return response()->json($data);
+    }); 
+
     Route::get('/index', 'postController@userpost')->name('user.index');
 });
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');

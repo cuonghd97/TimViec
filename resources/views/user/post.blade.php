@@ -29,11 +29,8 @@
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="sel1">Loại công việc:</label>
-                            <select class="form-control" name="type">
+                            <select class="form-control" name="type" id="type">
                                 <option selected>--Chọn--</option>
-                                <option>Giúp việc theo giờ</option>
-                                <option>Giúp việc fulltime</option>
-                                <option>Giúp việc ...</option>
                             </select>
                         </div>
                     </div>
@@ -43,6 +40,15 @@
                         <div class="form-group">
                             <label for="comment">Tiêu đề:</label>
                             <input type="text" name="title" id="title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            <label for="avatar">
+                                <img src="" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
+                            </label>
+                            <span>Chọn ảnh</span>
+                            <input type="file" name="avatar" onchange="readURL(this);" id="avatar">
                         </div>
                     </div>
                 </div>
@@ -124,4 +130,23 @@
     </div>
 </div>
 <script src="{{ asset('js/main.js') }}"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $('#btn_avatar').on('click', function () {
+        $('#avatar').trigger('click');
+    });
+</script>
 @endsection

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\worktype;
+use App\Provinces;
+use App\Districts;
 
 class userController extends Controller
 {
@@ -73,8 +76,9 @@ class userController extends Controller
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->user_gender = $request->get('gender');
-        $user->user_district = $request->get('district');
-        $user->user_province = $request->get('province');
+        $user->user_address = $request->get('address');
+        $user->user_district = $request->get('districts_list');
+        $user->user_province = $request->get('provinces_list');
         $user->user_phone = $request->get('phone');
         $user->user_birthday = $request->get('birthday');
         $user->save();
@@ -99,7 +103,10 @@ class userController extends Controller
 
     public function info($id){
         $userinfo = User::find($id);
-        return view('user.info')->with('userinfo', $userinfo);
+        $work = worktype::all();
+        $provinces = Provinces::all();
+        $districts = Districts::all();
+        return view('user.info', compact(['userinfo', 'work', 'districts', 'provinces']));
     }
 
 }

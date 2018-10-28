@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePinnedsTable extends Migration
+class CreateDistrictsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePinnedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pinneds', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id')->nullable();
-            $table->string('post_id')->nullable();
+            $table->string('province_id', 191);
+            $table->string('districts_name', 191);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePinnedsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pinneds');
+        Schema::dropIfExists('districts');
     }
 }

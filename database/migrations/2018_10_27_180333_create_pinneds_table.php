@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorktypesTable extends Migration
+class CreatePinnedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateWorktypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('worktypes', function (Blueprint $table) {
+        Schema::create('pinneds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('work_id')->nullable();
-            $table->string('work_type')->nullable();
+            $table->string('user_id', 191)->nullable();
+            $table->string('post_id', 191)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateWorktypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worktypes');
+        Schema::dropIfExists('pinneds');
     }
 }

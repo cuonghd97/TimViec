@@ -20,4 +20,11 @@ $(document).ready(function () {
             })
         })
     })
+
+    var worktype = $('#type')
+    $.getJSON('/user/typework-data', function(data) {
+        $.each(data, function (key, entry) {
+            worktype.append($('<option></option>').attr('value', entry.work_type).text(entry.work_type))
+        })
+    })
 });

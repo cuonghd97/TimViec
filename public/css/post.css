@@ -6,3 +6,24 @@
 .right-side .panel {
     margin-top: 0px !important;
 }
+
+.address_info {
+    margin-left: -15px;
+}
+
+.fixtop {
+    margin-top: 5px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#avatar {
+    color:transparent;
+    display: none;
+}
+
+#blah {
+    cursor: pointer;
+}

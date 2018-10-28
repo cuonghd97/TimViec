@@ -1,5 +1,6 @@
 @extends('user.baseuser')
 @section('rightPage')
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 <div class="col-md-7 col-sm-7">
     <div class="rows right-side">
 
@@ -7,8 +8,8 @@
             <div class="panel-heading ads-hdr"><i class="fa fa-info-circle fa-fw"></i> Thông tin tài khoản</div>
             <div class="tai-khoan">
 
-                <form name="frmProfile" action="{{ action('userController@update', ['id'=>$userinfo->id]) }}"
-                    method="post" enctype="multipart/form-data" onsubmit="return validate_form()">
+                <form name="frmProfile" action="{{ action('userController@update', ['id'=>$userinfo->id]) }}" method="post"
+                    enctype="multipart/form-data" onsubmit="return validate_form()">
                     {{ csrf_field() }}
                     @if(session()->has('message'))
                     <div class="alert alert-success">
@@ -17,16 +18,15 @@
                     @endif
 
                     <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-user-circle-o fa-fw"></i> Tên liên hệ</div>
+                        <div class="col-xs-3"><i class="fa fa-user-circle-o fa-fw"></i> Tên liên hệ</div>
                         <div class="col-xs-7">
-                            <input type="text" name="name" value="{{ $userinfo->name }}" size="30"
-                                maxlength="30" class="form-control">
+                            <input type="text" name="name" value="{{ $userinfo->name }}" size="30" maxlength="30" class="form-control">
                         </div>
                     </div>
 
                     <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-transgender-alt"></i> Giới tính</div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-3"><i class="fa fa-transgender-alt"></i> Giới tính</div>
+                        <div class="col-xs-3 fixtop">
                             <div class="form-group">
                                 <select class="form-control" name="gender" id="gender">
                                     <option>Nam</option>
@@ -37,13 +37,13 @@
                         </div>
                     </div>
                     <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-transgender-alt"></i> Ngày sinh</div>
+                        <div class="col-xs-3"><i class="fa fa-transgender-alt"></i> Ngày sinh</div>
                         <div class="col-xs-4">
                             <input id="datepicker" name="birthday" width="276" value="{{ $userinfo->user_birthday }}" />
                         </div>
                     </div>
                     <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-envelope-o fa-fw"></i> Email </div>
+                        <div class="col-xs-3"><i class="fa fa-envelope-o fa-fw"></i> Email </div>
                         <div class="col-xs-7">
                             <p class="form-control-static border-box">&nbsp;{{ $userinfo->email }}</p>
                         </div>
@@ -59,119 +59,72 @@
                               //-->
 
                     <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-location-arrow fa-fw"></i> Địa chỉ </div>
-                        <div class="col-xs-3">
-                            <input type="text" name="district" value="{{ $userinfo->user_district }}" size="30"
-                                maxlength="30" class="form-control">
-                            <small id="provincehelp" class="form-text text-muted">Quận, Huyện.</small>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                <select id="province" name="province" class="form-control">
-                                    <option>Hà Nội</option>
-                                    <option>Hồ Chí Minh</option>
-                                    <option>Hải Phòng</option>
-                                    <option>Đà Nẵng</option>
-                                    <option>Hà Giang</option>
-                                    <option>Cao Bằng</option>
-                                    <option>Lai Châu</option>
-                                    <option>Lào Cai</option>
-                                    <option>Tuyên Quang</option>
-                                    <option>Lạng Sơn</option>
-                                    <option>Bắc Kạn</option>
-                                    <option>Thái Nguyên</option>
-                                    <option>Yên Bái</option>
-                                    <option>Sơn La</option>
-                                    <option>Phú Thọ</option>
-                                    <option>Vĩnh Phúc</option>
-                                    <option>Quảng Ninh</option>
-                                    <option>Bắc Giang</option>
-                                    <option>Bắc Ninh</option>
-                                    <option>Hải Dương</option>
-                                    <option>Hưng Yên</option>
-                                    <option>Hòa Bình</option>
-                                    <option>Hà Nam</option>
-                                    <option>Nam Định</option>
-                                    <option>Thái Bình</option>
-                                    <option>Ninh Bình</option>
-                                    <option>Thanh Hóa</option>
-                                    <option>Nghệ An</option>
-                                    <option>Hà Tĩnh</option>
-                                    <option>Quảng Bình</option>
-                                    <option>Quảng Trị</option>
-                                    <option>Thừa Thiên - Huế</option>
-                                    <option>Quảng Nam</option>
-                                    <option>Quảng Ngãi</option>
-                                    <option>Kon Tum</option>
-                                    <option>Bình Định</option>
-                                    <option>Gia Lai</option>
-                                    <option>Phú Yên</option>
-                                    <option>Đắk Lắk</option>
-                                    <option>Khánh Hòa</option>
-                                    <option>Lâm Đồng</option>
-                                    <option>Bình Phước</option>
-                                    <option>Bình Dương</option>
-                                    <option>Ninh Thuận</option>
-                                    <option>Tây Ninh</option>
-                                    <option>Bình Thuận</option>
-                                    <option>Đồng Nai</option>
-                                    <option>Long An</option>
-                                    <option>Đồng Tháp</option>
-                                    <option>An Giang</option>
-                                    <option>Bà Rịa - Vũng Tàu</option>
-                                    <option>Tiền Giang</option>
-                                    <option>Kiên Giang</option>
-                                    <option>Cần Thơ</option>
-                                    <option>Bến Tre</option>
-                                    <option>Vĩnh Long</option>
-                                    <option>Trà Vinh</option>
-                                    <option>Sóc Trăng</option>
-                                    <option>Bạc Liêu</option>
-                                    <option>Cà Mau</option>
-                                    <option>Điện Biên</option>
-                                    <option>Đắk Nông</option>
-                                    <option>Hậu Giang</option>
-                                </select>
-                                <small id="provincehelp" class="form-text text-muted">Tỉnh.</small>
+                        <div class="col-xs-3"><i class="fa fa-location-arrow fa-fw"></i> Địa chỉ </div>
+                        <div class="col-xs-9 address_info">
+                            <div class="col-xs-12">
+                                <input type="text" name="address" id="address" class="form-control" value="{{ $userinfo->user_address }}">
+                                <small id="provincehelp" class="form-text text-muted">Số nhà/Thôn/Xã</small>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <select id="districts_list" name="districts_list" class="form-control">
+                                        <option selected>--Chọn--</option>
+                                    </select>
+                                    <small id="provincehelp" class="form-text text-muted">Quận huyện.</small>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <select id="provinces_list" name="provinces_list" class="form-control">
+                                        <option selected>--Chọn--</option>
+                                    </select>
+                                    <small id="provincehelp" class="form-text text-muted">Tỉnh.</small>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-phone fa-fw"></i> Điện thoại</div>
+                        <div class="col-xs-3"><i class="fa fa-phone fa-fw"></i> Điện thoại</div>
                         <div class="col-xs-7">
-                            <input type="text" name="phone" value="{{ $userinfo->user_phone }}" size="20"
-                                maxlength="20" class="form-control">
+                            <input type="text" name="phone" value="{{ $userinfo->user_phone }}" size="20" maxlength="20"
+                                class="form-control">
                         </div>
                     </div>
                     <!--<div class="rows">
-                                  <div class="col-xs-5"><i class="fa fa-check-circle fa-fw"></i> SMS</div>
+                                  <div class="col-xs-3"><i class="fa fa-check-circle fa-fw"></i> SMS</div>
                                   <div class="col-xs-7">
                                       <p class="badge">&nbsp;</p>
                                   </div>
                                   </div>-->
-                    <div class="rows">
-                        <div class="col-xs-5"><i class="fa fa-picture-o fa-fw"></i> Avatar</div>
+                    <div class="rows fixtop">
+                        <div class="col-xs-3"><i class="fa fa-picture-o fa-fw"></i> Avatar</div>
+                        <center>
+                            <div class="col-xs-7 fixtop">
+                                <img src="{{ asset( $userinfo->user_avatar ) }}" alt="" style="width: 100px; height: 100px;"
+                                    id="blah">
+                            </div>
+                        </center>
+                    </div>
+                    <div class="rows fixtop">
+                        <div class="col-xs-5"></div>
+
                         <div class="col-xs-7">
-                            <img src="{{ asset( $userinfo->user_avatar ) }}" alt="" style="width: 50px; height: 50px;"
-                                id="blah">
-                        </div>
-                    </div>
-                    <div class="rows">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-9">
-                            <input type="file" name="avatar" class="container" onchange="readURL(this);">
+                            <center>
+                                <input type="file" name="avatar" class="container" onchange="readURL(this);">
+                            </center>
                         </div>
                     </div>
 
 
                     <div class="rows">
-                        <div class="col-md-3">&nbsp;</div>
-                        <div class="col-md-9">&nbsp;
-                            <button type="submit" name="profilesm" value="Thay đổi" class="btn btn-default btn-success">Cập
-                                nhật</button>
-                            <br><br>
-                        </div>
+                        <center>
+                            <div class="col-md-12 fixtop">&nbsp;
+                                <button type="submit" name="profilesm" value="Thay đổi" class="btn btn-default btn-success">Cập
+                                    nhật</button>
+                                <br><br>
+                            </div>
+                        </center>
                     </div>
                 </form>
                 <div class="clearfix"></div>
@@ -180,43 +133,8 @@
                 <input type="hidden" name="pg_no" value="1">
                 <input type="hidden" id="sendreq_mya" name="mya" value="0">
             </form>
-
+            <input type="hidden" name="provincescount" id="provincescount" value="{{ $provinces->count() }}">
             <div class="clearfix"></div>
-
-
-        </div>
-
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        Bạn có muốn xóa bản tin này?
-                    </div>
-                    <div class="modal-body" id="modalText">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-danger btn-ok">Delete</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="send-resp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="form-inline">Thông báo!</div>
-                    </div>
-                    <div class="modal-body" id="modalTextResp">
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -226,10 +144,48 @@
         if (document.getElementById('gender').options[i].value == gender)
             document.getElementById("gender").selectedIndex = i;
 
-    province = '{{$userinfo->user_province}}'
-    for (let i = 0; i < 63; i++)
-        if (document.getElementById('province').options[i].value == province)
-            document.getElementById("province").selectedIndex = i;
+    var currentprovince = '{{$userinfo->user_province}}'
+    var currentdistrict = '{{$userinfo->user_district}}'
+
+    var province = $('#provinces_list')
+    var district = $('#districts_list')
+    $.getJSON('/user/provinces-data', function (data) {
+        $.each(data, function (key, entry) {
+            if (entry.province_name == currentprovince)
+                province.append($('<option></option>').attr('value', entry.province_id).attr('selected',
+                    'selected').text(entry.province_name))
+            else
+                province.append($('<option></option>').attr('value', entry.province_id).text(entry.province_name))
+        })
+        let cprovince = $('#provinces_list option:selected').val();
+        $.getJSON('/user/districts-data', function (data) {
+            $.each(data, function (key, entry) {
+                if (cprovince == entry.province_id) {
+                    if (entry.districts_name == currentdistrict)
+                        district.append($('<option></option>').attr('value', entry.districts_name)
+                            .attr('selected', 'selected').text(entry.districts_name))
+                    else
+                        district.append($('<option></option>').attr('value', entry.districts_name)
+                            .text(entry.districts_name))
+                }
+            })
+        })
+    })
+    $('#provinces_list').change(function () {
+        console.log($(this).val())
+        $('#districts_list').find('option').remove().end().append('<option value="">--Chọn--</option>');
+        let province = $(this).val();
+        $.getJSON('/user/districts-data', function (data) {
+            $.each(data, function (key, entry) {
+                if (province == entry.province_id) {
+                    district.append($('<option></option>').attr('value', entry.districts_name).text(
+                        entry.districts_name))
+                    console.log(province + ' ' + entry.province_id + ' ' + entry.districts_name)
+                }
+            })
+        })
+    })
+
 
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -238,8 +194,8 @@
             reader.onload = function (e) {
                 $('#blah')
                     .attr('src', e.target.result)
-                    .width(50)
-                    .height(50);
+                    .width(100)
+                    .height(100);
             };
 
             reader.readAsDataURL(input.files[0]);
