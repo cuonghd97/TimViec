@@ -111,8 +111,7 @@
                                     class="fa fa-eye fa-fw"></i> </label>
 
                             <div class="clearfix"></div>
-
-                            <footer class="postBy">Đăng bởi <b>{{ $name->name }}</b>
+                            <footer class="postBy">Đăng bởi <b>{{ $name }}</b>
                             </footer>
                             <div class="clearfix"></div>
                         </blockquote>
@@ -143,7 +142,7 @@
 
                             </div>
                         </div>
-                        <div class="site-user-address">
+                        <!--<div class="site-user-address">
                             <div class="rows clearfix">
                                 <div class="col-xs-5 col-md-3">
                                     <i class="fa fa-location-arrow fa-fw"></i><span class="dt">Địa chỉ</span>
@@ -155,7 +154,8 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div>-->
+                        
                         <div class="site-user-info">
                             <div class="rows clearfix">
                                 <div class="col-xs-5 col-md-3">

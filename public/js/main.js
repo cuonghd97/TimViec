@@ -21,6 +21,7 @@ $(document).ready(function () {
         })
     })
 
+
     var worktype = $('#type')
     $.getJSON('/user/typework-data', function(data) {
         $.each(data, function (key, entry) {

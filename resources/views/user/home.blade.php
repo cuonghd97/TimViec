@@ -81,7 +81,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw rvn-blue"></i> Đăng
                                     tin</a></li>
-                            <li><a href="/quan-ly"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
+                            <li><a href="{{ route('user.myposts') }}"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
                             <li role="separator" class="divider hidden"></li>
                             @if (Auth::check())
                             <li>

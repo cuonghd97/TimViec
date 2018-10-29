@@ -98,14 +98,14 @@ class postController extends Controller
 
     public function viewpost($id){
         $post = posts::find($id);
-        $name = User::find($post->user_id);
+        $name = User::where('user_id', $post->user_id)->first()->name;
         return view('viewpost', compact(['post', 'name']));
     }
 
     //Thêm bài đăng mới
     public function addPost(Request $request){
         $po = new posts();
-        $po->post_id = Uuid::uuid1();
+        $po->post_id = uniqid();
         $po->user_id = $request->user_id;
         $po->type_post = $request->typepost;
         $po->type = $request->type;
@@ -124,5 +124,11 @@ class postController extends Controller
             $request->file('avatar')->move('images/posts', $po->post_id);
         }
         return redirect()->route('dangtin');
+    }
+
+    //Danh sách bài đăng của user
+    public function listPosts($id) {
+        $lists = posts::find($id);
+        dd($lists);
     }
 }

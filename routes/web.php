@@ -43,6 +43,11 @@ Route::group(['prefix' => 'user'], function () {
         return response()->json($data);
     });
 
+    Route::get('posts-to-each-user', function() {
+        $data = App\posts::all();
+        return response()->json($data);
+    });
+
     Route::get('districts-data', function(){
         $data = App\Districts::all('province_id', 'districts_name');
         return response()->json($data);
@@ -54,5 +59,7 @@ Route::group(['prefix' => 'user'], function () {
     }); 
 
     Route::get('/index', 'postController@userpost')->name('user.index');
+
+    Route::get('myposts', 'postController@')->name('user.myposts');
 });
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
