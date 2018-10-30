@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\worktype;
 use App\posts;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -27,8 +28,8 @@ class postController extends Controller
 
     public function userpost()
     {
-        $posts = posts::all();
-        return view('user.index', ['posts' => $posts]);
+        $posts = posts::paginate(18);
+    	return view('user.allposts', ['posts' => $posts]);
     }
 
     /**
@@ -72,6 +73,9 @@ class postController extends Controller
     public function edit($id)
     {
         //
+        $data = posts::find($id);
+        $countTypeWork = worktype::count();
+        return view('user.editpost', compact(['data', 'countTypeWork']));
     }
 
     /**
@@ -84,6 +88,26 @@ class postController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $po = posts::find($id);
+        $po->user_id = $request->user_id;
+        $po->type_post = $request->typepost;
+        $po->type = $request->type;
+        $po->title = $request->title;
+        $po->content = $request->content;
+        $po->address = $request->address;
+        $po->phone = $request->phone;
+        $po->district = $request->districts_list;
+        $po->province = $request->provinces_list;
+        $po->age = $request->age;
+        $po->salary = $request->salary;
+        $po->gender = $request->gender_list;
+        $po->save();
+        if ($request->hasFile('avatar')){
+            $po->image = 'images/posts/'.$po->post_id;
+                $po->save();
+            $request->file('avatar')->move('images/posts', $po->post_id);
+        }
+        return redirect()->route('user.myposts');
     }
 
     /**
@@ -114,6 +138,7 @@ class postController extends Controller
         $po->title = $request->title;
         $po->content = $request->content;
         $po->address = $request->address;
+        $po->phone = $request->phone;
         $po->district = $request->districts_list;
         $po->province = $request->provinces_list;
         $po->age = $request->age;

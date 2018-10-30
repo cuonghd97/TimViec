@@ -11,7 +11,7 @@
                 <i class="fa fa-info-circle fa-fw"></i> Đăng bài
             </div>
 
-            <form method="POST" action="{{ action('postController@addPost') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ action('postController@update', ['id'=>$data->id]) }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->user_id }}">
                 <input type="hidden" name="fulladdress" id="fulladdress">
@@ -19,7 +19,7 @@
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="sel1">Chọn loại tin:</label>
-                            <select class="form-control" name="typepost">
+                            <select class="form-control" name="typepost" id="typepost">
                                 <option selected>--Chọn--</option>
                                 <option>Người tìm việc</option>
                                 <option>Tìm người giúp việc</option>
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label for="sel1">Loại công việc:</label>
                             <select class="form-control" name="type" id="type">
-                                <option selected>--Chọn--</option>
+                                <option selected value="--Chọn--">--Chọn--</option>
                             </select>
                         </div>
                     </div>
@@ -39,13 +39,13 @@
                     <div class="col-xs-7">
                         <div class="form-group">
                             <label for="comment">Tiêu đề:</label>
-                            <input type="text" name="title" id="title" class="form-control">
+                            <input type="text" name="title" id="title" class="form-control" value="{{ $data->title }}">
                         </div>
                     </div>
                     <div class="col-xs-5">
                         <div class="form-group">
                             <label for="avatar">
-                                <img src="" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
+                                <img src="{{ asset($data->image) }}" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
                             </label>
                             <span>Chọn ảnh</span>
                             <input type="file" name="avatar" onchange="readURL(this);" id="avatar">
@@ -56,18 +56,19 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="comment">Nội dung:</label>
-                            <textarea class="form-control" rows="10" id="content" name="content"></textarea>
+                            <textarea class="form-control" rows="10" id="content" name="content">
+                            </textarea>
                         </div>
                     </div>
                 </div>
                 <div class="row row-post">
                     <div class="col-xs-12">
                         <fieldset>
-                            <legend>Thông tin liên hệ</legend>
+                            <legend>Thông tin liên hệ:</legend>
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="sel1">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="address" name="address">
+                                    <input type="text" class="form-control" id="address" name="address" value="{{ $data->address }}">
                                 </div>
                             </div>
                             <div class="col-xs-3">
@@ -87,11 +88,11 @@
                                 </div>
                             </div>
                             <div class="col-xs-4">
-                                <div class="form-group">
-                                    <label for="sel1">Số điện thoại:</label>
-                                    <input type="number" name="phone" id="phone" class="form-control">
+                                    <div class="form-group">
+                                        <label for="sel1">Số điện thoại:</label>
+                                        <input type="number" name="phone" id="phone" class="form-control" value="{{ $data->phone }}">
+                                    </div>
                                 </div>
-                            </div>
                         </fieldset>
                     </div>
                 </div>
@@ -113,13 +114,13 @@
                                 <div class="col-xs-4">
                                     <div class="form-group">
                                         <label for="sel1">Mức lương:</label>
-                                        <input type="text" name="salary" id="salary" class="form-control">
+                                        <input type="text" name="salary" id="salary" class="form-control" value="{{ $data->salary }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="form-group">
                                         <label for="sel1">Tuổi:</label>
-                                        <input type="text" name="age" id="age" class="form-control">
+                                        <input type="text" name="age" id="age" class="form-control" value="{{ $data->age }}">
                                     </div>
                                 </div>
                             </div>
@@ -191,8 +192,8 @@
             </div>
         </div>
     </footer>
-<script src="{{ asset('js/main.js') }}"></script>
 <script>
+    $('textarea').val('{{ $data->content }}')
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -207,6 +208,69 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    gender = '{{$data->gender}}'
+    for (let i = 0; i < 3; i++)
+        if (document.getElementById('gender_list').options[i].value == gender)
+            document.getElementById("gender_list").selectedIndex = i;
+
+    type_post = '{{$data->type_post}}'
+    for (let i = 0; i < 3; i++)
+        if (document.getElementById('typepost').options[i].value == type_post)
+            document.getElementById('typepost').selectedIndex = i;
+
+    var worktype = $('#type')
+    var typework = '{{$data->type}}'
+    $.getJSON('/user/typework-data', function(data) {
+        $.each(data, function (key, entry) {
+            if (typework == entry.work_type)
+            worktype.append($('<option selected="selected"></option>').attr('value', entry.work_type).text(entry.work_type))
+            else
+            worktype.append($('<option></option>').attr('value', entry.work_type).text(entry.work_type))
+        })
+    })
     
+    var currentprovince = '{{$data->province}}'
+    var currentdistrict = '{{$data->district}}'
+
+    var province = $('#provinces_list')
+    var district = $('#districts_list')
+    $.getJSON('/user/provinces-data', function (data) {
+        $.each(data, function (key, entry) {
+            if (entry.province_name == currentprovince)
+                province.append($('<option></option>').attr('value', entry.province_id).attr('selected',
+                    'selected').text(entry.province_name))
+            else
+                province.append($('<option></option>').attr('value', entry.province_id).text(entry.province_name))
+        })
+        let cprovince = $('#provinces_list option:selected').val();
+        $.getJSON('/user/districts-data', function (data) {
+            $.each(data, function (key, entry) {
+                if (cprovince == entry.province_id) {
+                    if (entry.districts_name == currentdistrict)
+                        district.append($('<option></option>').attr('value', entry.districts_name)
+                            .attr('selected', 'selected').text(entry.districts_name))
+                    else
+                        district.append($('<option></option>').attr('value', entry.districts_name)
+                            .text(entry.districts_name))
+                }
+            })
+        })
+    })
+    $('#provinces_list').change(function () {
+        console.log($(this).val())
+        $('#districts_list').find('option').remove().end().append('<option value="">--Chọn--</option>');
+        let province = $(this).val();
+        $.getJSON('/user/districts-data', function (data) {
+            $.each(data, function (key, entry) {
+                if (province == entry.province_id) {
+                    district.append($('<option></option>').attr('value', entry.districts_name).text(
+                        entry.districts_name))
+                    console.log(province + ' ' + entry.province_id + ' ' + entry.districts_name)
+                }
+            })
+        })
+    })
+
+
 </script>
 @endsection

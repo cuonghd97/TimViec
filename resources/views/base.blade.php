@@ -25,7 +25,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand reload" href="/"><img src="/images/logo.png" width="165" border="0"></a>
+        <a class="navbar-brand reload" href="/"><img src="/images/logo.png" width="165" height="42" border="0" style="margin-top: -6px;"></a>
 
 
       </div>

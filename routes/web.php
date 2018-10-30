@@ -62,6 +62,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('posts-data', 'postController@postData');
 
     Route::get('/deletepost/{id}', 'postController@destroy');
+
+    Route::get('/editpost/{id}', 'postController@edit');
+
+    Route::post('/updatepost/{id}', 'postController@update');
+
+    //Tất cả các bài đăng
+    Route::get('/allposts', 'postController@userpost')->name('user.allposts');
 });
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
 

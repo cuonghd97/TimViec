@@ -1,4 +1,4 @@
-@extends('base')
+@extends('user.navbar')
 @section('pgContent')
 <div id="pgContent" class="clearfix">
     <div class="rvn-menu-bar hidden-xs">

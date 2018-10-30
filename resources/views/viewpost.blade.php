@@ -169,10 +169,10 @@
                         <div class="site-user-info">
                             <div class="rows clearfix">
                                 <div class="col-xs-5 col-md-3">
-                                    <i class="fa fa-user fa-fw"></i><span class="dt">Kinh nghiệm</span>
+                                    <i class="fa fa-phone-square"></i><span class="dt"> Số điện thoại: </span>
                                 </div>
                                 <div class="col-xs-7 col-md-9 price-tag">
-                                    {{ $post->experience }}
+                                    {{ $post->phone }}
                                 </div>
                             </div>
                             </div>
