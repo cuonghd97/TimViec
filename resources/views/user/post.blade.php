@@ -1,7 +1,7 @@
 @extends('user.baseuser')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-<link rel="stylesheet" href="{{ asset('css/post.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/post.css') }}">
 @section('rightPage')
 <div class="col-md-7 col-sm-7">
     <div class="rows right-side">
@@ -191,7 +191,7 @@
             </div>
         </div>
     </footer>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ secure_asset('js/main.js') }}"></script>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
