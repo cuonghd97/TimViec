@@ -60,6 +60,8 @@ Route::group(['prefix' => 'user'], function () {
     })->name('user.myposts');
 
     Route::get('posts-data', 'postController@postData');
+
+    Route::get('/deletepost/{id}', 'postController@destroy');
 });
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
 

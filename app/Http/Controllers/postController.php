@@ -95,6 +95,7 @@ class postController extends Controller
     public function destroy($id)
     {
         //
+        posts::destroy($id);
     }
 
     public function viewpost($id){
