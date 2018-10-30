@@ -11,7 +11,7 @@
                 <i class="fa fa-info-circle fa-fw"></i> Đăng bài
             </div>
 
-            <form method="POST" action="{{ action('postController@addPost') }}">
+            <form method="POST" action="{{ action('postController@addPost') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->user_id }}">
                 <input type="hidden" name="fulladdress" id="fulladdress">
@@ -145,8 +145,6 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    $('#btn_avatar').on('click', function () {
-        $('#avatar').trigger('click');
-    });
+    
 </script>
 @endsection

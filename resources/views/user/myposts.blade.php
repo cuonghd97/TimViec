@@ -9,18 +9,18 @@
             <div class="tai-khoan">
                 <div class="rows clearfix user-ads">
                     <div class="col-md-8">
-                        <div class="rvn-item-no" id="notify6962804"><span class="badge">V</span></div>
-                        <div class="ad-title"><a href="/xem/6962804-Sinh-vien-can-thuc-tap.html" id="title6962804">Sinh
-                                viên cần thực tập</a></div>
-                        <div class="ad-stats"><i class="fa fa-clock-o"></i> 03/10/2018 <i class="fa fa-eye"></i> 57 <i class="fa fa-picture-o fa-fw"></i>
-                            <span class="pic-num">0</span> </div>
+                        <div class="rvn-item-no" id=""><span class="badge">V</span></div>
+                        <div class="ad-title"><a href="" id="titlepost">
+                                <!--Tiêu đề--></a></div>
+                        <div class="ad-stats"><i class="fa fa-clock-o"></i> <!--Ngày tạo--> 
+                            <i class="fa fa-eye"></i>
+                            <!--Số lượt xem-->
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="a-btn text-right">
-                            <a title="Chỉnh sửa" href="/dang-tin?mode=edit&amp;siteid=6962804&amp;v=text"><i class="fa fa-pencil-square fa-fw" style="color: blue;"></i></a>
-                            <a title="Xóa tin" data-toggle="modal" data-id="6962804" data-target="#confirm-delete" href="#"
-                                data-href="/quan-ly?mode=delete&amp;siteid=6962804"><i class="fa fa-trash-o fa-fw" style="color: red;"></i></a>
-                            <!--<a title="Gia hạn" href="#" data-id="6962804" data-toggle="modal" data-target="#confirm-renew"><i class="fa fa-retweet fa-fw"></i></a>-->
+                            <a title="Chỉnh sửa"><i class="fa fa-pencil-square fa-fw" style="color: blue;"></i></a>
+                            <a title="Xóa tin"> <i class="fa fa-trash-o fa-fw" style="color: red;"></i></a>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -32,4 +32,24 @@
         </div>
     </div>
 </div>
+<script>
+    $.ajax({
+        url: "posts-data",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            var ptag = $('#exampledata')
+            var putdata = ''
+            $.getJSON('posts-data', function (data) {
+                $.each(data, function (key, entry) {
+                    $('#titlepost').text(entry.title)
+                })
+            })
+
+        },
+        error: function () {
+            console.log('failure')
+        }
+    })
+</script>
 @endsection

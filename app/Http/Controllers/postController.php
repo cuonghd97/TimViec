@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\posts;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -120,15 +121,16 @@ class postController extends Controller
         $po->save();
         if ($request->hasFile('avatar')){
             $po->image = 'images/posts/'.$po->post_id;
-            $po->save();
+                $po->save();
             $request->file('avatar')->move('images/posts', $po->post_id);
         }
         return redirect()->route('dangtin');
     }
 
-    //Danh sách bài đăng của user
-    public function listPosts($id) {
-        $lists = posts::find($id);
-        dd($lists);
+    //Thông tin các bài đăng dưới dạng json
+    public function postdata() {
+        $userid = Auth::guard('user')->user()->user_id;
+        $data = posts::where('user_id', $userid)->get();
+        return response()->json($data);
     }
 }
