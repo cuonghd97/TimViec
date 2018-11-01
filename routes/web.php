@@ -95,6 +95,16 @@ Route::group(['prefix' => 'admin'], function () {
         return response()->json($data);
   });
 
+  Route::get('provinces', function() {
+    $data = App\Provinces::all();
+        return response()->json($data);
+  });
+
+  Route::get('districts', function() {
+    $data = App\Districts::all();
+        return response()->json($data);
+  });
+
   Route::get('admin/deleterow/{id}', 'adminController@destroyuser');
 
   Route::get('address', function() {
