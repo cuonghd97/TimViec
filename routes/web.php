@@ -72,3 +72,32 @@ Route::group(['prefix' => 'user'], function () {
 });
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
 
+Route::resource('posts', 'postController');
+Route::group(['prefix' => 'admin'], function () {
+  Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('admin.login');
+  Route::post('/login', 'AdminAuth\LoginController@login');
+  Route::post('/logout', 'AdminAuth\LoginController@logout')->name('admin.logout');
+
+  Route::get('/register', 'AdminAuth\RegisterController@showRegistrationForm')->name('admin.register');
+  Route::post('/register', 'AdminAuth\RegisterController@register');
+
+  Route::post('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.request');
+  Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('admin.password.email');
+  Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');
+  Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+
+  Route::get('manager-users', function() {
+    return view('admin.managerusers');
+  });
+
+  Route::get('users-data', function() {
+    $data = App\User::all();
+        return response()->json($data);
+  });
+
+  Route::get('admin/deleterow/{id}', 'adminController@destroyuser');
+
+  Route::get('address', function() {
+    return view('admin.address');
+  });
+});

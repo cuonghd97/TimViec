@@ -105,7 +105,7 @@
                     <div class="cate-icons rows " id="cateicons">
                         <div class='cate-group main-cate-icon'><a href='/C-11-Nha-cua-Dat-dai' class='reload'>
                                 <div class='fa fa-home fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Nhà cửa - Đất đai</div>
+                                <div class='cate-name'>Giúp việc</div>
                             </a></div>
                         <div class='cate-group main-cate-icon'><a href='/C-75-Viec-lam-Tuyen-sinh' class='reload'>
                                 <div class='fa fa-users fa-3x' aria-hidden='true'></div>
@@ -295,7 +295,7 @@
                         <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
                                 <div class="rvn-item-image text-center" id="itm_img6973827">
-                                    <img src="{{ secure_asset($item->image) }}" class="rounded-bo" width="90"></div>
+                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90"></div>
                                 <div class="rvn-item-content">
                                     <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>

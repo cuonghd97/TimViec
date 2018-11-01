@@ -117,7 +117,7 @@
                             </a></div>
                         <div class='cate-group main-cate-icon'><a href='/C-2-Dien-may-Dien-tu' class='reload'>
                                 <div class='fa fa-television fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Điện máy - Điện tử</div>
+                                <div class='cate-name'>Điện máy </div>
                             </a></div>
                         <div class='cate-group main-cate-icon'><a href='/C-77-Thoi-trang-Lam-dep' class='reload'>
                                 <div class='fa fa-shopping-bag fa-3x' aria-hidden='true'></div>
@@ -334,7 +334,7 @@
                     </a><a href='/dang-tin-2-Dien-may-Dien-tu'>
                         <div class='cate-group w20-md-w50-xs'>
                             <div class='fa fa-television fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Điện máy - Điện tử</div>
+                            <div class='cate-name'>Điện máy</div>
                         </div>
                     </a><a href='/dang-tin-77-Thoi-trang-Lam-dep'>
                         <div class='cate-group w20-md-w50-xs'>
@@ -362,7 +362,62 @@
         </div>
     </div>
 </div>
-
+<footer class="footer">
+        <div class="container">
+            <div class="rows ftr-4cols hidden-xs clearfix">
+                <div class="col-md-3 col-sm-4">
+                    <div class="ftr-title">Thông tin liên hệ</div>
+    
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="ftr-title">Thông tin về trang web</div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="ftr-title">Hướng dẫn</div>
+                </div>
+                <div class="col-md-3 hidden-sm">
+                    <div class="ftr-title">Liên kết ưu tiên</div>
+                </div>
+            </div>
+            <div class="rows hidden-xs clearfix">
+                <div class="col-md-3 col-sm-4">
+    
+                    <div class="ftr-content">
+                        Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
+                            class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
+                        <div class="fb-icon"><a target="_blank" href="https://www.facebook.com/duccuongdc97">
+                                <i class="fa fa-facebook-official fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="ftr-content">
+                        <div><a href="/faq25/Quy-che-hoat-dong.html"><i class="fa fa-caret-right fa-fw"></i> Quy chế hoạt
+                                động</a></div>
+                        <div><a href="/faq23/Chinh-sach-bao-mat-thong-tin.html"><i class="fa fa-caret-right fa-fw"></i>
+                                Chính sách bảo mật thông tin</a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="ftr-content">
+                        <div><a href="/faq27/Huong-dan-dang-ky-thanh-vien.html"><i class="fa fa-caret-right fa-fw"></i>
+                                Hướng dẫn đăng ký thành viên</a></div>
+                        <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
+                                đăng tin</a></div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="ftr">
+                <div class="ftrCopyright">
+                    <div class="CopyrightText">Bài tập lớn môn phát triển phần mềm hướng dịch vụ Trường Đại Học Công Nghiệp
+                        Hà Nội</div>
+                </div>
+            </div>
+        </div>
+    </footer>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 @endsection

@@ -12,7 +12,7 @@
             <div class="col-md-3 col-sm-5">
                 <div id="sidebar" class="panel panel-default hidden-xs">
                     <div class="panel-heading">
-                        <div class="panel-title sb-name"><span class="badge">842436</span> </div>
+                        <div class="panel-title sb-name"><span class="badge">{{ Auth::guard('user')->user()->name }}</span> </div>
                     </div>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="list-menu"><a href="/tin-nhan"><i class="fa fa-comments-o fa-fw"></i> Tin nhắn <span class="label label-danger pull-right"></span></a></li>

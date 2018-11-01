@@ -12,7 +12,7 @@
         <div class="welcome">
             <div>
                 <div class="avatar-img32" id="usrAvt" data-original-title="" title="" style="width: 65px;">
-                    <img src="{{secure_asset(Auth::guard('user')->user()->user_avatar)}}" alt="avatar" border="0" style="height: 50px; width:50px;">
+                    <img src="{{asset(Auth::guard('user')->user()->user_avatar)}}" alt="avatar" border="0" style="height: 50px; width:50px;">
                     </a>
                 </div>
             </div>

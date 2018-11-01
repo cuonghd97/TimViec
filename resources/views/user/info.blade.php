@@ -1,6 +1,6 @@
 @extends('user.baseuser')
 @section('rightPage')
-<link rel="stylesheet" href="{{ secure_asset('css/post.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 <div class="col-md-7 col-sm-7">
     <div class="rows right-side">
 
@@ -101,7 +101,7 @@
                         <div class="col-xs-3"><i class="fa fa-picture-o fa-fw"></i> Avatar</div>
                         <center>
                             <div class="col-xs-7 fixtop">
-                                <img src="{{ secure_asset( $userinfo->user_avatar ) }}" alt="" style="width: 100px; height: 100px;"
+                                <img src="{{ asset( $userinfo->user_avatar ) }}" alt="" style="width: 100px; height: 100px;"
                                     id="blah">
                             </div>
                         </center>
