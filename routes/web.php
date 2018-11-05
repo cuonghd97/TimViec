@@ -88,7 +88,7 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('manager-users', function() {
     return view('admin.managerusers');
-  });
+  })->name('admin.managerusers');
 
   Route::get('users-data', function() {
     $data = App\User::all();
@@ -109,5 +109,9 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('address', function() {
     return view('admin.address');
-  });
+  })->name('admin.address');
+
+  Route::post('addprovince', 'adminController@addProvince');
+
+  Route::post('adddistrict', 'adminController@addDistrict');
 });

@@ -22,6 +22,7 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -63,8 +64,8 @@
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{{ asset(Auth::guard('admin')->user()->admin_avatar) }}" alt="user"
-                                    class="profile-pic" /></a>
+                                aria-haspopup="true" aria-expanded="false"><img src="{{ asset(Auth::guard('admin')->user()->admin_avatar) }}"
+                                    alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="#"><i class="ti-user"></i> Profile</a></li>
@@ -87,7 +88,7 @@
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="{{ route('admin.managerusers') }}" aria-expanded="false">
                                 <i class="fa fa-users"></i>
                                 <span class="hide-menu">Quản lý Admin</span>
                             </a>
@@ -105,7 +106,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="{{ route('admin.address') }}" aria-expanded="false">
                                 <i class="fa fa-address-card"></i>
                                 <span class="hide-menu">Quản lý địa chỉ</span>
                             </a>
@@ -125,7 +126,7 @@
         <!-- End Left Sidebar  -->
         <!-- Page wrapper  -->
         @section('rightContent')
-            
+
         @show
         <!-- End Page wrapper  -->
     </div>
