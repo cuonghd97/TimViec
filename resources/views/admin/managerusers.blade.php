@@ -1,7 +1,7 @@
 @extends('admin.home')
 @section('rightContent')
-<link rel="stylesheet" href="{{ asset('adminstyle/DataTables-1.10.18/css/dataTables.bootstrap4.css') }}">
-<link rel="stylesheet" href="{{ asset('adminstyle/DataTables-1.10.18/css/jquery.dataTables.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('adminstyle/DataTables-1.10.18/css/dataTables.bootstrap4.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('adminstyle/DataTables-1.10.18/css/jquery.dataTables.css') }}">
 <div class="page-wrapper">
     <!-- Bread crumb -->
     <div class="row page-titles">
@@ -140,8 +140,8 @@
     <footer class="footer">Trang quản trị</footer>
     <!-- End footer -->
 </div>
-<script src="{{ asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('adminstyle/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('adminstyle/DataTables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ asset('adminstyle/js/manageruser.js') }}"></script>
+<script src="{{ secure_asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ secure_asset('adminstyle/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
+<script src="{{ secure_asset('adminstyle/DataTables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ secure_asset('adminstyle/js/manageruser.js') }}"></script>
 @endsection

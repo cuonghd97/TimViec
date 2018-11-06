@@ -5,14 +5,14 @@
     <title>Tim nguoi giup viec</title>
     <script src="https://697f684f1.vws.vegacdn.vn/rvn/init.js?v2018.10.15.7" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/index.css') }}">
 </head>
 
 <body class="htmlContent">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <div id="prloading"><span class="ld-text"><img src="{{ asset('images/connecting.gif') }}" width="48"
+                <div id="prloading"><span class="ld-text"><img src="{{ secure_asset('images/connecting.gif') }}" width="48"
                             border="0"></span></div>
                 <div class="notification-nav visible-xs">
                     <div class="notification notification-button pull-right" data-original-title="" title=""><a
@@ -50,7 +50,7 @@
                     </li>
                     <li>
                         <a href="{{ action('userController@info', ['id'=>Auth::guard('user')->user()->id]) }}">
-                            <img title="Thông tin người dùng" data-container="body" data-placement="bottom" src="{{ asset(Auth::guard('user')->user()->user_avatar) }}"
+                            <img title="Thông tin người dùng" data-container="body" data-placement="bottom" src="{{ secure_asset(Auth::guard('user')->user()->user_avatar) }}"
                                 class="img-fluid img-circle" alt="" style="width: 30px; height: 30px;" data-toggle="popover"
                                 data-trigger="hover" data-popover-content="#list-popover">
                         </a>
