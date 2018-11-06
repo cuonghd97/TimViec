@@ -1,4 +1,5 @@
 @extends('base')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.css" />
 @section('pgContent')
 <div id="pgContent" class="clearfix">
     <div class="rvn-menu-bar hidden-xs">
@@ -73,11 +74,26 @@
                 </div>
                 <div class="rvn-menu-search">
                     <div class="input-group">
-                        <input type="text" name="kw" id="kw" class="form-control typeahead" autocomplete="off"
-                            data-provide="typeahead" placeholder="Nhập thông tin cần tìm...">
+                        <form id="form-country_v1" name="form-country_v1">
+                            <div class="typeahead__container">
+                                <div class="typeahead__field">
+                                    <div class="typeahead__query">
+                                        <input class="form-control js-typeahead-country_v1 search-input" name="country_v1[query]" type="search" id="kw"
+                                            placeholder="Search" autocomplete="off">
+                                    </div>
+                                    <div class="typeahead__button">
+                                        <button type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--<input type="search" name="kw" id="kw searchbar" class="form-control typeahead search-input"
+                            placeholder="Nhập thông tin cần tìm...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">Tìm kiếm!</button>
-                        </span>
+                        </span>-->
                     </div>
                 </div>
             </div>
@@ -123,7 +139,7 @@
                                 <div class='fa fa-shopping-bag fa-3x' aria-hidden='true'></div>
                                 <div class='cate-name'>Thời trang - Làm đẹp</div>
                             </a></div>
-                        
+
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -300,8 +316,9 @@
                                     <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>
                                     <div class="rvn-item-loca" id="itm_loc6973827"></div>
-                                    <div class="rvn-item-date"><i class="fa fa-clock-o fa-fw"></i>{{ $item->created_at }}<span
-                                            class="rvn-item-views"><i class="fa fa-eye fa-fw"></i> {{ $item->views }}</span></div>
+                                    <div class="rvn-item-date"><i class="fa fa-clock-o fa-fw"></i>{{ $item->created_at
+                                        }}<span class="rvn-item-views"><i class="fa fa-eye fa-fw"></i> {{ $item->views
+                                            }}</span></div>
                                 </div>
                             </div>
                         </a>
@@ -341,8 +358,8 @@
                             <div class='fa fa-shopping-bag fa-2x' aria-hidden='true'></div>
                             <div class='cate-name'>Thời trang - Làm đẹp</div>
                         </div>
-                    
-                    <div class="clearfix"></div>
+
+                        <div class="clearfix"></div>
                 </div>
             </div>
         </div>
@@ -363,61 +380,91 @@
     </div>
 </div>
 <footer class="footer">
-        <div class="container">
-            <div class="rows ftr-4cols hidden-xs clearfix">
-                <div class="col-md-3 col-sm-4">
-                    <div class="ftr-title">Thông tin liên hệ</div>
-    
+    <div class="container">
+        <div class="rows ftr-4cols hidden-xs clearfix">
+            <div class="col-md-3 col-sm-4">
+                <div class="ftr-title">Thông tin liên hệ</div>
+
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="ftr-title">Thông tin về trang web</div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="ftr-title">Hướng dẫn</div>
+            </div>
+            <div class="col-md-3 hidden-sm">
+                <div class="ftr-title">Liên kết ưu tiên</div>
+            </div>
+        </div>
+        <div class="rows hidden-xs clearfix">
+            <div class="col-md-3 col-sm-4">
+
+                <div class="ftr-content">
+                    Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
+                        class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
+                    <div class="fb-icon"><a target="_blank" href="https://www.facebook.com/duccuongdc97">
+                            <i class="fa fa-facebook-official fa-2x"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-4">
-                    <div class="ftr-title">Thông tin về trang web</div>
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <div class="ftr-title">Hướng dẫn</div>
-                </div>
-                <div class="col-md-3 hidden-sm">
-                    <div class="ftr-title">Liên kết ưu tiên</div>
+
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="ftr-content">
+                    <div><a href="/faq25/Quy-che-hoat-dong.html"><i class="fa fa-caret-right fa-fw"></i> Quy chế hoạt
+                            động</a></div>
+                    <div><a href="/faq23/Chinh-sach-bao-mat-thong-tin.html"><i class="fa fa-caret-right fa-fw"></i>
+                            Chính sách bảo mật thông tin</a></div>
                 </div>
             </div>
-            <div class="rows hidden-xs clearfix">
-                <div class="col-md-3 col-sm-4">
-    
-                    <div class="ftr-content">
-                        Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
-                            class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
-                        <div class="fb-icon"><a target="_blank" href="https://www.facebook.com/duccuongdc97">
-                                <i class="fa fa-facebook-official fa-2x"></i>
-                            </a>
-                        </div>
-                    </div>
-    
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <div class="ftr-content">
-                        <div><a href="/faq25/Quy-che-hoat-dong.html"><i class="fa fa-caret-right fa-fw"></i> Quy chế hoạt
-                                động</a></div>
-                        <div><a href="/faq23/Chinh-sach-bao-mat-thong-tin.html"><i class="fa fa-caret-right fa-fw"></i>
-                                Chính sách bảo mật thông tin</a></div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4">
-                    <div class="ftr-content">
-                        <div><a href="/faq27/Huong-dan-dang-ky-thanh-vien.html"><i class="fa fa-caret-right fa-fw"></i>
-                                Hướng dẫn đăng ký thành viên</a></div>
-                        <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
-                                đăng tin</a></div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="ftr">
-                <div class="ftrCopyright">
-                    <div class="CopyrightText">Bài tập lớn môn phát triển phần mềm hướng dịch vụ Trường Đại Học Công Nghiệp
-                        Hà Nội</div>
+            <div class="col-md-3 col-sm-4">
+                <div class="ftr-content">
+                    <div><a href="/faq27/Huong-dan-dang-ky-thanh-vien.html"><i class="fa fa-caret-right fa-fw"></i>
+                            Hướng dẫn đăng ký thành viên</a></div>
+                    <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
+                            đăng tin</a></div>
+
                 </div>
             </div>
         </div>
-    </footer>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-
+        <div class="ftr">
+            <div class="ftrCopyright">
+                <div class="CopyrightText">Bài tập lớn môn phát triển phần mềm hướng dịch vụ Trường Đại Học Công Nghiệp
+                    Hà Nội</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.js"></script>
+<script>
+    var list=["a"]
+    $.ajax({
+        url: 'search/title',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            list.push(data)
+            $.each(data, function (key, entry) {
+                console.log(entry.title)
+            })
+        }
+    })
+    console.log(list)
+    arr = ["asndb", "asdasd", "jhjuih"]
+    console.log(arr.length)
+    $.typeahead({
+        input: '.js-typeahead-country_v1',
+        order: "desc",
+        source: {
+            data: arr
+        },
+        callback: {
+            onInit: function (node) {
+                console.log('Typeahead Initiated on ' + node.selector);
+            }
+        }
+    });
+</script>
 @endsection

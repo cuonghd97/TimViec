@@ -83,9 +83,8 @@
                                     tin</a></li>
                             <li><a href="{{ route('user.myposts') }}"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
                             <li role="separator" class="divider hidden"></li>
-                            @if (Auth::check())
                             <li>
-                                <a href="{{ action('userController@info', ['id'=>Auth::user()->id]) }}"><i class="fa fa-user fa-fw"></i>
+                                <a href="{{ action('userController@info', ['id'=>Auth::guard('user')->user()->id]) }}"><i class="fa fa-user fa-fw"></i>
                                     Thông tin tài khoản
                                 </a>
                             </li>
@@ -101,7 +100,6 @@
                                     {{ csrf_field() }}
                                 </form>
                             </li>
-                            @endif
                         </ul>
                     </li>
 

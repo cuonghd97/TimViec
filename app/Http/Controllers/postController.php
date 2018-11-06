@@ -128,6 +128,12 @@ class postController extends Controller
         return view('viewpost', compact(['post', 'name']));
     }
 
+    public function userviewpost($id){
+        $post = posts::find($id);
+        $name = User::where('user_id', $post->user_id)->first()->name;
+        return view('user.viewpost', compact(['post', 'name']));
+    }
+
     //Thêm bài đăng mới
     public function addPost(Request $request){
         $po = new posts();

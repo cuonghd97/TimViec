@@ -66,11 +66,16 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/editpost/{id}', 'postController@edit');
 
     Route::post('/updatepost/{id}', 'postController@update');
+    Route::get('/viewpost/{id}', 'postController@userviewpost')->name('user.viewpost');
 
     //Tất cả các bài đăng
     Route::get('/allposts', 'postController@userpost')->name('user.allposts');
 });
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
+Route::get('search/title', function() {
+  $data = App\posts::all('title');
+  return response()->json($data);
+});
 
 Route::resource('posts', 'postController');
 Route::group(['prefix' => 'admin'], function () {
