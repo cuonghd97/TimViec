@@ -13,6 +13,11 @@
 
             <form method="POST" action="{{ action('postController@addPost') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                    @endif
                 <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->user_id }}">
                 <input type="hidden" name="fulladdress" id="fulladdress">
                 <div class="row row-post">

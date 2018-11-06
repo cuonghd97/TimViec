@@ -8,6 +8,7 @@ use App\Provinces;
 use App\Districts;
 use DB;
 use App\worktype;
+use App\posts;
 
 class adminController extends Controller
 {
@@ -69,5 +70,9 @@ class adminController extends Controller
         if ($work->save()){
             return response($work, 200);
         }
+    }
+    //Xóa bài đăng
+    public function deletepost($id) {
+        posts::destroy($id);
     }
 }

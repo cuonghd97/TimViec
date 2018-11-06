@@ -150,7 +150,7 @@ class postController extends Controller
                 $po->save();
             $request->file('avatar')->move('images/posts', $po->post_id);
         }
-        return redirect()->route('dangtin');
+        return redirect()->route('dangtin')->with('message', 'Đăng bài thành công');
     }
 
     //Thông tin các bài đăng dưới dạng json

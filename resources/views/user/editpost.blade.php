@@ -10,11 +10,10 @@
             <div class="panel-heading ads-hdr">
                 <i class="fa fa-info-circle fa-fw"></i> Đăng bài
             </div>
-
             <form method="POST" action="{{ action('postController@update', ['id'=>$data->id]) }}" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                {{ csrf_field() }} 
+                {{ method_field('PUT') }}      
                 <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->user_id }}">
-                <input type="hidden" name="fulladdress" id="fulladdress">
                 <div class="row row-post">
                     <div class="col-xs-6">
                         <div class="form-group">
@@ -129,7 +128,7 @@
                 </div>
                 <div class="row row-post">
                     <center>
-                        <input type="submit" id="dangbai" class="btn btn-primary" value="Đăng bài">
+                        <input type="submit" id="dangbai" class="btn btn-primary" value="Sửa bài">
                     </center>
                 </div>
             </form>

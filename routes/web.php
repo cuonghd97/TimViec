@@ -126,8 +126,18 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('adddistrict', 'adminController@addDistrict');
   Route::get('/deletedistrict/{id}', 'adminController@xoahuyen');
 
-  //Thêm, xóa loại công việc
+  //Thêm, Sửa, xóa loại công việc
   Route::post('addwork', 'adminController@addwork');
   Route::get('deletework/{id}', 'adminController@deletework');
   Route::post('editwork/{id}', 'adminController@editwork');
+
+  //Sửa, xóa bài đăng
+  Route::get('posts', function() {
+    return view('admin.posts');
+  })->name('admin.posts');
+  Route::get('postdata', function() {
+    $data = App\posts::all();
+    return response()->json($data);
+  });
+  Route::get('deletepost/{id}', 'adminController@deletepost');
 });

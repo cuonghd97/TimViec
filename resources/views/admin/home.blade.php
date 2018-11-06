@@ -38,7 +38,7 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="#">
                         <!-- Logo icon -->
                         <b><img src="{{asset('adminstyle/images/logo.png')}}" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
@@ -89,12 +89,12 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
-                        <li>
+                        <!--<li>
                             <a href="{{ route('admin.managerusers') }}" aria-expanded="false">
                                 <i class="fa fa-users"></i>
                                 <span class="hide-menu">Quản lý Admin</span>
                             </a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="{{ route('admin.managerusers') }}" aria-expanded="false">
                                 <i class="fa fa-user"></i>
@@ -102,7 +102,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="{{ route('admin.posts') }}" aria-expanded="false">
                                 <i class="fa fa-file"></i>
                                 <span class="hide-menu">Quản lý bài đăng</span>
                             </a>
