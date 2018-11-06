@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\posts;
 use App\Provinces;
+use App\Admin;
 
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $admin = new Admin();
+        $admin->name = 'Super Admin';
+        $admin->email = 'supperadmin@admin.com';
+        $admin->password = bcrypt('123456');
+        $admin->admin_id = '124566';
+        $admin->save();
         // $this->call(UsersTableSeeder::class);
         
         // for ($i=0; $i < 100; $i++) { 
@@ -32,14 +39,14 @@ class DatabaseSeeder extends Seeder
         // $post->views = 10;
         // $post->save();
         // }
-        $array = array("Hà Nội", "Hồ Chí Minh");
-        $n = count($array);
+        // $array = array("Hà Nội", "Hồ Chí Minh");
+        // $n = count($array);
 
-        for ($i = 0; $i < $n; $i++){
-            $pro = new Provinces();
-            $pro->province_id = $i;
-            $pro->province_name = $array[$i];
-            $pro->save();
-        }
+        // for ($i = 0; $i < $n; $i++){
+        //     $pro = new Provinces();
+        //     $pro->province_id = $i;
+        //     $pro->province_name = $array[$i];
+        //     $pro->save();
+        // }
     }
 }
