@@ -24,6 +24,11 @@ class LoginController extends Controller
         LogsoutGuard::logout insteadof AuthenticatesUsers;
     }
 
+    public function logoutadmin(){
+        dd('logout success');
+        Auth()->logout();
+        return redirect()->route('admin.login');
+    }
     /**
      * Where to redirect users after login / registration.
      *

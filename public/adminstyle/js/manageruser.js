@@ -18,7 +18,7 @@ $(document).ready(function () {
         "columnDefs": [{
             "targets": 3,
             "data": null,
-            "defaultContent": "<button id='info' class='xem btn btn-info'><i class='fa fa-eye'></i></button><a class='sua btn btn-primary' style='margin: 5px;'><i class='fa fa-edit'></i></a><button class='xoa btn btn-danger'><i class='fa fa-times'></i></button>"
+            "defaultContent": "<button id='info' style='margin: 5px;' class='xem btn btn-info'><i class='fa fa-eye'></i></button><button class='xoa btn btn-danger'><i class='fa fa-times'></i></button>"
         }],
         createdRow: function (row, data, dataIndex) {
             $(row).find('.xoa').attr('data-id', data.id).attr('id', 'xoa');

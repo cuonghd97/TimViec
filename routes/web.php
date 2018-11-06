@@ -78,17 +78,21 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/login', 'AdminAuth\LoginController@login');
   Route::post('/logout', 'AdminAuth\LoginController@logout')->name('admin.logout');
 
-  Route::get('/register', 'AdminAuth\RegisterController@showRegistrationForm')->name('admin.register');
-  Route::post('/register', 'AdminAuth\RegisterController@register');
+//   Route::get('/register', 'AdminAuth\RegisterController@showRegistrationForm')->name('admin.register');
+//   Route::post('/register', 'AdminAuth\RegisterController@register');
 
-  Route::post('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.request');
-  Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('admin.password.email');
-  Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');
-  Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+//   Route::post('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.request');
+//   Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('admin.password.email');
+//   Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');
+//   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
 
   Route::get('manager-users', function() {
     return view('admin.managerusers');
   })->name('admin.managerusers');
+
+  Route::get('manager-works', function() {
+    return view('admin.work');
+  })->name('admin.work');
 
   Route::get('users-data', function() {
     $data = App\User::all();
@@ -105,13 +109,25 @@ Route::group(['prefix' => 'admin'], function () {
         return response()->json($data);
   });
 
+  Route::get('work', function() {
+    $data = App\worktype::all();
+    return response()->json($data);
+  });
+
   Route::get('admin/deleterow/{id}', 'adminController@destroyuser');
 
   Route::get('address', function() {
     return view('admin.address');
   })->name('admin.address');
-
+  // Thêm, xóa tỉnh
   Route::post('addprovince', 'adminController@addProvince');
-
+  Route::get('/deleteprovince/{id}', 'adminController@xoatinh');
+  // Thêm, xóa huyện
   Route::post('adddistrict', 'adminController@addDistrict');
+  Route::get('/deletedistrict/{id}', 'adminController@xoahuyen');
+
+  //Thêm, xóa loại công việc
+  Route::post('addwork', 'adminController@addwork');
+  Route::get('deletework/{id}', 'adminController@deletework');
+  Route::post('editwork/{id}', 'adminController@editwork');
 });

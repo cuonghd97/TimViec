@@ -8,24 +8,24 @@
     <!-- Bread crumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Quản lý người dùng</h3>
+            <h3 class="text-primary">Quản lý địa chỉ</h3>
         </div>
 
     </div>
     <!-- End Bread crumb -->
     <!-- Container fluid  -->
-    <div class="container-fluid">
+    <div class="container">
         <!-- Start Page Content -->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="row">
-                        {{ csrf_field() }}
-                        <div class="form-group col-sm-5">
-                            <input type="text" name="addprovince" class="form-control" id="addprovince" placeholder="Thêm tỉnh...">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <button type="button" class="btn btn-primary" id="btaddprovince">Thêm</button>
-                        </div>
+                    {{ csrf_field() }}
+                    <div class="form-group col-sm-5">
+                        <input type="text" name="addprovince" class="form-control" id="addprovince" placeholder="Thêm tỉnh...">
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        <button type="button" class="btn btn-primary" id="btaddprovince">Thêm</button>
+                    </div>
                 </div>
                 <div class="row">
                     <table id="provinceslist" style="width: 100%;">
@@ -42,7 +42,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="row">
                     <select name="changeprovince" id="changeprovince" class="col-sm-5 custom-select" style="margin-bottom: 10px;">
                         <option selected>--Chọn--</option>

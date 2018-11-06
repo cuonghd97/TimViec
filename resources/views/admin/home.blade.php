@@ -68,8 +68,10 @@
                                     alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </ul>
                             </div>
                         </li>
@@ -94,7 +96,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="{{ route('admin.managerusers') }}" aria-expanded="false">
                                 <i class="fa fa-user"></i>
                                 <span class="hide-menu">Quản lý người dùng</span>
                             </a>
@@ -112,7 +114,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="{{ route('admin.work') }}" aria-expanded="false">
                                 <i class="fa fa-briefcase"></i>
                                 <span class="hide-menu">Quản lý loại công việc</span>
                             </a>
