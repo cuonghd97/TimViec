@@ -11,11 +11,11 @@
     <!-- Favicon icon -->
     <title>Trang quản trị</title>
     <!-- Bootstrap Core CSS -->
-    <link href="{{ secure_asset('adminstyle/css/lib/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('adminstyle/css/lib/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
 
-    <link href="{{ secure_asset('adminstyle/css/helper.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('adminstyle/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('adminstyle/css/helper.css') }}" rel="stylesheet">
+    <link href="{{ asset('adminstyle/css/style.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -40,10 +40,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <!-- Logo icon -->
-                        <b><img src="{{secure_asset('adminstyle/images/logo.png')}}" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="{{asset('adminstyle/images/logo.png')}}" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="{{secure_asset('adminstyle/images/logo-text.png')}}" alt="homepage" class="dark-logo" /></span>
+                        <span><img src="{{asset('adminstyle/images/logo-text.png')}}" alt="homepage" class="dark-logo" /></span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -64,7 +64,7 @@
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{{ secure_asset(Auth::guard('admin')->user()->admin_avatar) }}"
+                                aria-haspopup="true" aria-expanded="false"><img src="{{ asset(Auth::guard('admin')->user()->admin_avatar) }}"
                                     alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
@@ -134,21 +134,21 @@
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
-    <script src="{{ secure_asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ secure_asset('adminstyle/js/lib/bootstrap/js/popper.min.js') }}"></script>
-    <script src="{{ secure_asset('adminstyle/js/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/lib/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/lib/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ secure_asset('adminstyle/js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/jquery.slimscroll.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="{{ secure_asset('adminstyle/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/sidebarmenu.js') }}"></script>
     <!--stickey kit -->
-    <script src="{{ secure_asset('adminstyle/js/lib/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/lib/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
     <!--Custom JavaScript -->
-    <script src="{{ secure_asset('adminstyle/js/custom.min.js') }}"></script>
+    <script src="{{ asset('adminstyle/js/custom.min.js') }}"></script>
     <!--Datatable-->
-    <script src="{{ secure_asset('adminstyle/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ secure_asset('adminstyle/DataTables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('adminstyle/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('adminstyle/DataTables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
 </body>
 
 </html>

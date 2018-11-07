@@ -295,7 +295,7 @@
                         <a href="{{ action('postController@userviewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
                                 <div class="rvn-item-image text-center" id="itm_img6973827">
-                                    <img src="{{ secure_asset($item->image) }}" class="rounded-bo" width="90"></div>
+                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90"></div>
                                 <div class="rvn-item-content">
                                     <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>

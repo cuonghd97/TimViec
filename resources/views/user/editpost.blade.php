@@ -1,7 +1,7 @@
 @extends('user.baseuser')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-<link rel="stylesheet" href="{{ secure_asset('css/post.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 @section('rightPage')
 <div class="col-md-7 col-sm-7">
     <div class="rows right-side">
@@ -44,7 +44,7 @@
                     <div class="col-xs-5">
                         <div class="form-group">
                             <label for="avatar">
-                                <img src="{{ secure_asset($data->image) }}" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
+                                <img src="{{ asset($data->image) }}" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
                             </label>
                             <span>Chọn ảnh</span>
                             <input type="file" name="avatar" onchange="readURL(this);" id="avatar">

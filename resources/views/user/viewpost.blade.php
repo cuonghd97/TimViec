@@ -1,7 +1,7 @@
 @extends('user.navbar')
 <script src="https://697f684f1.vws.vegacdn.vn/rvn/init.js?v2018.10.15.7" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/index.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
 <link href="https://697f684f1.vws.vegacdn.vn/rvn/xem-tin.css?v2018.10.21.1" rel="stylesheet">
 <style>
     .read-more-state {

@@ -78,8 +78,8 @@
                             <div class="typeahead__container">
                                 <div class="typeahead__field">
                                     <div class="typeahead__query">
-                                        <input class="form-control js-typeahead-country_v1 search-input" name="country_v1[query]" type="search" id="kw"
-                                            placeholder="Search" autocomplete="off">
+                                        <input class="form-control js-typeahead-country_v1 search-input" name="country_v1[query]"
+                                            type="search" id="kw" placeholder="Search" autocomplete="off">
                                     </div>
                                     <div class="typeahead__button">
                                         <button type="submit">
@@ -439,32 +439,31 @@
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.js"></script>
 <script>
-    var list=["a"]
+    var list = []
+    var m = $;
     $.ajax({
         url: 'search/title',
         type: 'GET',
         dataType: 'json',
-        success: function(data) {
-            list.push(data)
+        success: function (data) {
             $.each(data, function (key, entry) {
-                console.log(entry.title)
+                list.push(entry.title)
             })
+
+            m.typeahead({
+                input: '.js-typeahead-country_v1',
+                order: "desc",
+                source: {
+                    data: list
+                },
+                callback: {
+                    onInit: function (node) {
+                        console.log('Typeahead Initiated on ' + node.selector);
+                    }
+                }
+            });
+
         }
     })
-    console.log(list)
-    arr = ["asndb", "asdasd", "jhjuih"]
-    console.log(arr.length)
-    $.typeahead({
-        input: '.js-typeahead-country_v1',
-        order: "desc",
-        source: {
-            data: arr
-        },
-        callback: {
-            onInit: function (node) {
-                console.log('Typeahead Initiated on ' + node.selector);
-            }
-        }
-    });
 </script>
 @endsection
