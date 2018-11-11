@@ -52,7 +52,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                     <li><a href="{{ url('/user/login') }}">Đăng nhập</a></li>
-                    <li><a href="{{ url('/USER/register') }}">Đăng ký</a></li>
+                    <li><a href="{{ url('/user/register') }}">Đăng ký</a></li>
                     @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

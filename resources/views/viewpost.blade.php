@@ -131,17 +131,7 @@
                             </div>
                         </div>
 
-                        <div class="site-user-phone">
-                            <div class="rows clearfix">
-                                <div class="col-xs-5 col-md-3">
-                                    <i class="fa fa-phone fa-fw"></i><span class="dt">Điện thoại</span>
-                                </div>
-                                <div class="col-xs-7 col-md-9 price-tag">
-                                    0965001792
-                                </div>
-
-                            </div>
-                        </div>
+                        
                         <!--<div class="site-user-address">
                             <div class="rows clearfix">
                                 <div class="col-xs-5 col-md-3">
@@ -180,7 +170,10 @@
                     </div>
 
                 </div>
-
+                <div class="col-md-3">
+                        <h1>Hình ảnh</h1>
+                        <img src="{{ asset($post->image_of_post) }}" alt="" class="img-responsive">
+                    </div>
             </div>
         </div>
     </div>

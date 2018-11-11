@@ -54,7 +54,7 @@
     <div class="container pgBody">
         <div class="rvn-home-category ">
             <div class="rows">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="cate-title " style="float:left" id="home-title"><a href="#"><i class="fa fa-rss fa-fw"></i></a>
                         Chuyên mục đăng tin <span class="hidden-xs" id="home-city-name"></span></div>
                     <div class="autoSearch pull-right visible-xs">
@@ -70,31 +70,20 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="cate-icons rows " id="cateicons">
-                        <div class='cate-group main-cate-icon'><a href='/C-11-Nha-cua-Dat-dai' class='reload'>
-                                <div class='fa fa-home fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Nhà cửa - Đất đai</div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-75-Viec-lam-Tuyen-sinh' class='reload'>
-                                <div class='fa fa-users fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Việc làm - Tuyển sinh</div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-73-Co-khi-May-moc' class='reload'>
-                                <div class='fa fa-cogs fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Cơ khí - Máy móc</div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-2-Dien-may-Dien-tu' class='reload'>
-                                <div class='fa fa-television fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Điện máy </div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-77-Thoi-trang-Lam-dep' class='reload'>
-                                <div class='fa fa-shopping-bag fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Thời trang - Làm đẹp</div>
-                            </a></div>
-
+                        @foreach ($swork as $item)
+                        <div class='cate-group main-cate-icon' style="margin-top: 40px;">
+                            <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
+                                <div>
+                                    <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 100px; height: 100px;">
+                                </div>
+                                <div class='cate-name'>{{ $item->work_type }}</div>
+                            </a>
+                        </div>
+                        @endforeach
                         <div class="clearfix"></div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
         <div class="rows hidden" id="home_cate_paging2">
@@ -109,104 +98,59 @@
         </div>
         <div class="rows">
             <div class="rvn-items col-md-12">
-                <form method="post" name="frmLocationsFilter" id="frmLocationsFilter">
-                    <div id="locFilterDiv" class="visible-xs"><select id='locFilter' name='locFilter' class='chosen-select form-control'>
-                            <option value='0'>Toàn quốc</option>
-                            <option value='11'>Hồ Chí Minh</option>'<option value='1'>Hà Nội</option>'<option value='4'>Đà
-                                Nẵng</option>'<option value='53'>Hải Phòng</option>'<option value='250'>Bình Dương</option>'<option
-                                value='210'>Cần Thơ</option>'<option value='14'>Khánh Hòa</option>'<option value='195'>An
-                                Giang</option>'<option value='233'>Bình Phước</option>'<option value='9'>Bình Thuận</option>'<option
-                                value='238'>Bình Định</option>'<option value='228'>Bạc Liêu</option>'<option value='268'>Bắc
-                                Giang</option>'<option value='269'>Bắc Kạn</option>'<option value='260'>Bắc Ninh</option>'<option
-                                value='254'>Bến Tre</option>'<option value='523'>Cao Bằng</option>'<option value='192'>Cà
-                                Mau</option>'<option value='181'>Đắk Lắk</option>'<option value='784'>Đắk Nông</option>'<option
-                                value='216'>Đồng Nai</option>'<option value='71'>Đồng Tháp</option>'<option value='792'>Điện
-                                Biên</option>'<option value='72'>Gia Lai</option>'<option value='77'>Hà Giang</option>'<option
-                                value='109'>Hà Nam</option>'<option value='98'>Hà Tĩnh</option>'<option value='92'>Hải
-                                Dương</option>'<option value='540'>Hậu Giang</option>'<option value='130'>Hoà Bình</option>'<option
-                                value='2'>Huế</option>'<option value='141'>Hưng Yên</option>'<option value='154'>Kiên
-                                Giang</option>'<option value='689'>Kon Tum</option>'<option value='175'>Lai Châu</option>'<option
-                                value='162'>Lào Cai</option>'<option value='285'>Lâm Đồng</option>'<option value='59'>Lạng
-                                Sơn</option>'<option value='294'>Long An</option>'<option value='380'>Nam Định</option>'<option
-                                value='511'>Nghệ An</option>'<option value='520'>Ninh Bình</option>'<option value='392'>Ninh
-                                Thuận</option>'<option value='396'>Phú Thọ</option>'<option value='6'>Phú Yên</option>'<option
-                                value='416'>Quảng Bình</option>'<option value='424'>Quảng Nam</option>'<option value='438'>Quảng
-                                Ngãi</option>'<option value='451'>Quảng
-                                Ninh</option>'<option value='465'>Quảng Trị</option>'<option value='514'>Sóc Trăng</option>'<option
-                                value='501'>Sơn
-                                La</option>'<option value='495'>Tây Ninh</option>'<option value='348'>Thanh Hoá</option>'<option
-                                value='485'>Thái Bình</option>'<option value='474'>Thái Nguyên</option>'<option value='341'>Tiền
-                                Giang</option>'<option value='332'>Trà
-                                Vinh</option>'<option value='314'>Tuyên
-                                Quang</option>'<option value='277'>Vũng Tàu</option>'<option value='321'>Vĩnh Long</option>'<option
-                                value='186'>Vĩnh Phúc</option>'<option value='323'>Yên Bái</option>'<option value='903'>Các
-                                tỉnh khác</option>'
-                        </select></div>
-                    <input type="hidden" name="scatid" value="0" />
-                </form>
-
                 <div class="clearfix"><a id="LcAnchor" name=""></a></div>
                 <div class="clearfix">
                     <p>&nbsp;</p>
                 </div>
-                <div class="latest-items clearfix"><i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
+                <div class="latest-items clearfix">
+                    <i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
                 <div id="LISTITEMS">
                     @foreach ($posts as $item)
-                    <div class="listItem clearfix">
+                    <div class="listItem" style="float: left;">
                         <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
-                                <div class="rvn-item-image text-center" id="itm_img6973827">
-                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90"></div>
+                                <div class="rvn-item-image text-center">
+                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 90px;">
+                                </div>
                                 <div class="rvn-item-content">
-                                    <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>
-                                    <div class="rvn-item-loca" id="itm_loc6973827"></div>
-                                    <div class="rvn-item-date"><i class="fa fa-clock-o fa-fw"></i>{{ $item->created_at
-                                        }}<span class="rvn-item-views"><i class="fa fa-eye fa-fw"></i> {{ $item->views
-                                            }}</span></div>
+                                    <div class="rvn-item-date">
+                                        <i class="fa fa-compass"></i> {{ $item->province }}
+                                    </div>
+                                    <div class="rvn-item-date">
+                                        <i class="fa fa-clock-o fa-fw"></i> {{ $item->created_at }}
+                                    </div>
+                                    <div class="rvn-item-date ">
+                                        <i class="fa fa-eye fa-fw"></i> {{ $item->views }}  
+                                    </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     @endforeach
                 </div>
-                <div class="clearfix"></div>
-                {!! $posts->links() !!}
-                </form>
-
             </div>
-            <div class="rows hidden-xs">
+            <div class="clearfix"></div>
+            {!! $posts->links() !!}
+            </form>
+
+        </div>
+            <!--<div class="rows hidden-xs">
                 <div class="postad-category clearfix">ĐĂNG TIN NHANH THEO CHUYÊN MỤC</div>
                 <div id="postad-icons" class="clearfix">
-                    <a href='/dang-tin-11-Nha-cua-Dat-dai'>
+                    @foreach ($swork as $item)
+                    <a href='{{ route('user.addpost') }}'>
                         <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-home fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Nhà cửa - Đất đai</div>
+                            <div>
+                                <img src="{{ asset($item->image) }}" alt="" style="width: 200px; height: 200px; border-radius: 25px;">
+                            </div>
+                            <div class='cate-name'>{{ $item->work_type }}</div>
                         </div>
-                    </a><a href='/dang-tin-75-Viec-lam-Tuyen-sinh'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-users fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Việc làm - Tuyển sinh</div>
-                        </div>
-                    </a><a href='/dang-tin-73-Co-khi-May-moc'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-cogs fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Cơ khí - Máy móc</div>
-                        </div>
-                    </a><a href='/dang-tin-2-Dien-may-Dien-tu'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-television fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Điện máy</div>
-                        </div>
-                    </a><a href='/dang-tin-77-Thoi-trang-Lam-dep'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-shopping-bag fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Thời trang - Làm đẹp</div>
-                        </div>
-
-                        <div class="clearfix"></div>
+                    </a>
+                    @endforeach
+                    <div class="clearfix"></div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="modal fade" id="send-resp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

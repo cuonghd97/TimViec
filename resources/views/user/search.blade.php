@@ -70,27 +70,16 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="cate-icons rows " id="cateicons">
-                        <div class='cate-group main-cate-icon'><a href='/C-11-Nha-cua-Dat-dai' class='reload'>
-                                <div class='fa fa-home fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Nhà cửa - Đất đai</div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-75-Viec-lam-Tuyen-sinh' class='reload'>
-                                <div class='fa fa-users fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Việc làm - Tuyển sinh</div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-73-Co-khi-May-moc' class='reload'>
-                                <div class='fa fa-cogs fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Cơ khí - Máy móc</div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-2-Dien-may-Dien-tu' class='reload'>
-                                <div class='fa fa-television fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Điện máy </div>
-                            </a></div>
-                        <div class='cate-group main-cate-icon'><a href='/C-77-Thoi-trang-Lam-dep' class='reload'>
-                                <div class='fa fa-shopping-bag fa-3x' aria-hidden='true'></div>
-                                <div class='cate-name'>Thời trang - Làm đẹp</div>
-                            </a></div>
-
+                            @foreach ($swork as $item)
+                            <div class='cate-group main-cate-icon' style="margin-top: 40px;">
+                                <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
+                                    <div>
+                                        <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 100px; height: 100px;">
+                                    </div>
+                                    <div class='cate-name'>{{ $item->work_type }}</div>
+                                </a>
+                            </div>
+                            @endforeach
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -151,19 +140,24 @@
                 </div>
                 <div class="latest-items clearfix"><i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
                 <div id="LISTITEMS">
-                    @foreach ($posts as $item)
-                    <div class="listItem clearfix">
-                        <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
+                        @foreach ($posts as $item)
+                    <div class="listItem" style="float: left;">
+                        <a href="{{ action('postController@userviewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
-                                <div class="rvn-item-image text-center" id="itm_img6973827">
-                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90"></div>
+                                <div class="rvn-item-image text-center">
+                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 90px;">
+                                </div>
                                 <div class="rvn-item-content">
-                                    <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>
-                                    <div class="rvn-item-loca" id="itm_loc6973827"></div>
-                                    <div class="rvn-item-date"><i class="fa fa-clock-o fa-fw"></i>{{ $item->created_at
-                                        }}<span class="rvn-item-views"><i class="fa fa-eye fa-fw"></i> {{ $item->views
-                                            }}</span></div>
+                                    <div class="rvn-item-date">
+                                        <i class="fa fa-compass"></i> {{ $item->province }}
+                                    </div>
+                                    <div class="rvn-item-date">
+                                        <i class="fa fa-clock-o fa-fw"></i> {{ $item->created_at }}
+                                    </div>
+                                    <div class="rvn-item-date ">
+                                        <i class="fa fa-eye fa-fw"></i> {{ $item->views }}  
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -178,33 +172,17 @@
             <div class="rows hidden-xs">
                 <div class="postad-category clearfix">ĐĂNG TIN NHANH THEO CHUYÊN MỤC</div>
                 <div id="postad-icons" class="clearfix">
+                    @foreach ($swork as $item)
                     <a href='/dang-tin-11-Nha-cua-Dat-dai'>
                         <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-home fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Nhà cửa - Đất đai</div>
+                            <div>
+                                <img src="{{ asset($item->image) }}" class="img-thumbnail" style="width: 200px; height: 200px; border-radius: 25px;">
+                            </div>
+                            <div class='cate-name'>{{ $item->work_type }}</div>
                         </div>
-                    </a><a href='/dang-tin-75-Viec-lam-Tuyen-sinh'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-users fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Việc làm - Tuyển sinh</div>
-                        </div>
-                    </a><a href='/dang-tin-73-Co-khi-May-moc'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-cogs fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Cơ khí - Máy móc</div>
-                        </div>
-                    </a><a href='/dang-tin-2-Dien-may-Dien-tu'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-television fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Điện máy</div>
-                        </div>
-                    </a><a href='/dang-tin-77-Thoi-trang-Lam-dep'>
-                        <div class='cate-group w20-md-w50-xs'>
-                            <div class='fa fa-shopping-bag fa-2x' aria-hidden='true'></div>
-                            <div class='cate-name'>Thời trang - Làm đẹp</div>
-                        </div>
-
-                        <div class="clearfix"></div>
+                    </a>
+                    @endforeach
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>

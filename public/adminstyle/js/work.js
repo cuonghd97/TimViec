@@ -13,7 +13,10 @@ $(document).ready(function () {
                 "data": "work_type"
             },
             {
-                "data": "image"
+                "data": "image",
+                "render": function(data, type, row, meta) {
+                    return '<img src="{{ asset("' + data +'") }}" />'
+                }
             }
         ],
         "columnDefs": [{

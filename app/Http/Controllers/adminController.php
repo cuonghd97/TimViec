@@ -97,8 +97,21 @@ class adminController extends Controller
         $request->file('addimage')->move('images/works', $request->addwork);
         return back();
     }
+
+    // Hiện công việc
+    public function showwork() {
+        $datawork = worktype::all();
+        return view('admin.work', compact(['datawork']));
+    }
+    // Xóa việc 
+    public function deletew($id){
+        worktype::destroy($id);
+        return back();
+    }
     //Xóa bài đăng
     public function deletepost($id) {
         posts::destroy($id);
     }
+
+
 }

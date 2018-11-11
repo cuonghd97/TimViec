@@ -14,6 +14,7 @@
 Route::get('/', 'postController@index')->name('guestallposts');
 Route::post('/search', 'postController@search')->name('search');
 Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
+Route::get('loc-theo-cong-viec/{work}', 'postController@bywork')->name('bywork');
 Route::get('search/title', function() {
   $data = App\posts::all('title');
   return response()->json($data);
@@ -43,7 +44,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('dang-tin', function() {
         return view('user.post');
     })->name('dangtin');
-    Route::post('addpost', 'postController@addPost');
+    Route::post('addpost', 'postController@addPost')->name('user.addpost');
     
     Route::get('provinces-data', function(){
         $data = App\Provinces::all('province_id', 'province_name');
@@ -83,6 +84,8 @@ Route::group(['prefix' => 'user'], function () {
       $data = App\posts::all('title');
       return response()->json($data);
     });
+    // Lọc bài đăng
+    Route::get('loc-theo-cong-viec/{work}', 'postController@byworkuser');
 });
 
 Route::resource('posts', 'postController');
@@ -103,9 +106,7 @@ Route::group(['prefix' => 'admin'], function () {
     return view('admin.managerusers');
   })->name('admin.managerusers');
 
-  Route::get('manager-works', function() {
-    return view('admin.work');
-  })->name('admin.work');
+  Route::get('manager-works','adminController@showwork')->name('admin.work');
 
   Route::get('users-data', function() {
     $data = App\User::all();
@@ -145,6 +146,8 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('editwork/{id}', 'adminController@editwork');
   // Thêm việc không dùng ajax
   Route::post('add', 'adminController@addw');
+  // Xóa việc không dùng ajax 
+  Route::get('deletew/{id}', 'adminController@deletew')->name('xoaviec');
 
   //Sửa, xóa bài đăng
   Route::get('posts', function() {

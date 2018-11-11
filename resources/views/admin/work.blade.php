@@ -42,7 +42,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr></tr>
+                    @foreach ($datawork as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->work_type }}</td>
+                        <td><img src="{{ asset($item->image) }}" alt="" style="width:200px; height: auto;"></td>
+                        <td>
+                            <a href="{{ route('xoaviec', ['id' => $item->id]) }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>                        
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -77,5 +86,5 @@
 <script src="{{ asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('adminstyle/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('adminstyle/DataTables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ asset('adminstyle/js/work.js') }}"></script>
+{{-- <script src="{{ asset('adminstyle/js/work.js') }}"></script> --}}
 @endsection

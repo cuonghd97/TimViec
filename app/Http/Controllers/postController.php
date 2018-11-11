@@ -101,7 +101,13 @@ class postController extends Controller
         else
         return view('user.search', compact(['sprovinces', 'posts', 'swork']));
     }
-
+    // Lọc theo loại công viêc
+    public function bywork($work){
+        $posts = posts::where('type', 'like', $work)->paginate(15);
+        $sprovinces = Provinces::all();
+        $swork = worktype::all();
+        return view('bywork', compact(['sprovinces', 'posts', 'swork']));
+    }
     public function userpost()
     {
         $posts = posts::paginate(18);
@@ -217,6 +223,14 @@ class postController extends Controller
         return view('user.viewpost', compact(['post', 'name']));
     }
 
+    // Lọc theo loại công viêc cho user
+    public function byworkuser($work){
+        $posts = posts::where('type', 'like', $work)->paginate(15);
+        $sprovinces = Provinces::all();
+        $swork = worktype::all();
+        return view('user.bywork', compact(['sprovinces', 'posts', 'swork']));
+    }
+
     //Thêm bài đăng mới
     public function addPost(Request $request){
         $po = new posts();
@@ -233,9 +247,11 @@ class postController extends Controller
         $po->age = $request->age;
         $po->salary = $request->salary;
         $po->gender = $request->gender_list;
+        $work = worktype::where('work_type', 'like', $request->type)->first();
+        $po->image = $work->image;
         $po->save();
         if ($request->hasFile('avatar')){
-            $po->image = 'images/posts/'.$po->post_id;
+            $po->image_of_post = 'images/posts/'.$po->post_id;
                 $po->save();
             $request->file('avatar')->move('images/posts', $po->post_id);
         }
