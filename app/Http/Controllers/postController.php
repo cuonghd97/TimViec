@@ -7,6 +7,7 @@ use Auth;
 use App\worktype;
 use App\posts;
 use App\User;
+use App\Provinces;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DB;
 use Ramsey\Uuid\Uuid;
@@ -19,17 +20,94 @@ class postController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //index của guest
     public function index()
     {
         //
-        $posts = posts::paginate(18);
-    	return view('index', ['posts' => $posts]);
+        $posts = posts::paginate(15);
+        $sprovinces = Provinces::all();
+        $swork = worktype::all();
+        return view('index', compact(['sprovinces', 'posts', 'swork']));
+        // return view('index', ['posts' => $posts],);
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->search_loca);
+        // dd($request->search_kat);
+        $posts = posts::paginate(15);
+        $sprovinces = Provinces::all();
+        $swork = worktype::all();
+
+        if ($request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')->paginate(15);
+        else
+        if ($request->search_loca != 'Toàn quốc...' && $request->search_kat == 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
+        ->where('province', 'like', $request->search_loca)
+        ->paginate(15);
+        else
+        if ($request->search_loca == 'Toàn quốc...' && $request->search_kat != 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
+        ->where('type', 'like', $request->search_kat)
+        ->paginate(15);
+        else
+        if ($request->search_loca != 'Toàn quốc...' && $request->search_kat != 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
+        ->where('type', 'like', $request->search_kat)
+        ->where('province', 'like', $request->search_loca)
+        ->paginate(15);
+
+        if ($request->searchdata == null && $request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
+        return redirect()->action('postController@index');
+        else
+        return view('search', compact(['sprovinces', 'posts', 'swork']));
+    }
+
+    // Trả về tỉnh về trang index của guest 
+    public function provincesguest()
+    {
+        
+    }
+
+    // Chức năng search dùng cho khi đã đăng nhập
+    public function usersearch(Request $request)
+    {
+        $posts = posts::paginate(15);
+        $sprovinces = Provinces::all();
+        $swork = worktype::all();
+
+        if ($request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')->paginate(15);
+        else
+        if ($request->search_loca != 'Toàn quốc...' && $request->search_kat == 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
+        ->where('province', 'like', $request->search_loca)
+        ->paginate(15);
+        else
+        if ($request->search_loca == 'Toàn quốc...' && $request->search_kat != 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
+        ->where('type', 'like', $request->search_kat)
+        ->paginate(15);
+        else
+        if ($request->search_loca != 'Toàn quốc...' && $request->search_kat != 'Chọn...')
+        $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
+        ->where('type', 'like', $request->search_kat)
+        ->where('province', 'like', $request->search_loca)
+        ->paginate(15);
+
+        if ($request->searchdata == null && $request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
+        return redirect()->action('postController@userpost');
+        else
+        return view('user.search', compact(['sprovinces', 'posts', 'swork']));
     }
 
     public function userpost()
     {
         $posts = posts::paginate(18);
-    	return view('user.allposts', ['posts' => $posts]);
+        $sprovinces = Provinces::all();
+        $swork = worktype::all();
+    	return view('user.allposts', compact(['sprovinces', 'posts', 'swork']));
     }
 
     /**
@@ -122,14 +200,19 @@ class postController extends Controller
         posts::destroy($id);
     }
 
+    //Xem bài đăng cho guest
     public function viewpost($id){
         $post = posts::find($id);
+        $post->views +=1;
+        $post->save();
         $name = User::where('user_id', $post->user_id)->first()->name;
         return view('viewpost', compact(['post', 'name']));
     }
-
+    //Xem bài đăng cho user
     public function userviewpost($id){
         $post = posts::find($id);
+        $post->views +=1;
+        $post->save();
         $name = User::where('user_id', $post->user_id)->first()->name;
         return view('user.viewpost', compact(['post', 'name']));
     }

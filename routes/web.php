@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', 'postController@index');
+Route::get('/', 'postController@index')->name('guestallposts');
+Route::post('/search', 'postController@search')->name('search');
+Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
+Route::get('search/title', function() {
+  $data = App\posts::all('title');
+  return response()->json($data);
+});
+
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('login');
@@ -70,11 +77,12 @@ Route::group(['prefix' => 'user'], function () {
 
     //Tất cả các bài đăng
     Route::get('/allposts', 'postController@userpost')->name('user.allposts');
-});
-Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
-Route::get('search/title', function() {
-  $data = App\posts::all('title');
-  return response()->json($data);
+    //Tìm kiếm bài đăng 
+    Route::post('/search', 'postController@usersearch')->name('usersearch');
+    Route::get('search/title', function() {
+      $data = App\posts::all('title');
+      return response()->json($data);
+    });
 });
 
 Route::resource('posts', 'postController');
@@ -135,6 +143,8 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('addwork', 'adminController@addwork');
   Route::get('deletework/{id}', 'adminController@deletework');
   Route::post('editwork/{id}', 'adminController@editwork');
+  // Thêm việc không dùng ajax
+  Route::post('add', 'adminController@addw');
 
   //Sửa, xóa bài đăng
   Route::get('posts', function() {

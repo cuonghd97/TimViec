@@ -12,11 +12,14 @@ $(document).ready(function () {
             {
                 "data": "work_type"
             },
+            {
+                "data": "image"
+            }
         ],
         "columnDefs": [{
-            "targets": 2,
+            "targets": 3,
             "data": null,
-            "defaultContent": `<button id='btnsua' data-toggle="modal" data-target="#edit" class='btn btn-primary'><i class="fa fa-edit"></i></button>
+            "defaultContent": `
                                 <a class='btn btn-danger xoa'><i class="fa fa-times"></i></a>`
         }],
         "displayLength": 10,
@@ -59,8 +62,10 @@ $(document).ready(function () {
     $('#btaddwork').on('click', function (e) {
         e.preventDefault();
         var data = {
-            addWork: document.getElementById('addwork').value
+            addWork: document.getElementById('addwork').value,
+            addImage: document.getElementById('addimage').value
         }
+        console.log(document.getElementById('addimage').value)
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

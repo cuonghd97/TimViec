@@ -16,6 +16,7 @@ class CreateWorktypesTable extends Migration
         Schema::create('worktypes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('work_id', 191)->nullable();
+            $table->string('image', 191)->nullable();
             $table->string('work_type', 191)->nullable();
             $table->timestamps();
         });

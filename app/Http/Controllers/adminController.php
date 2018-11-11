@@ -49,14 +49,28 @@ class adminController extends Controller
         Districts::destroy($id);
     }
 
-    //Thêm công việc
+    //Thêm công việc ajax
     public function addwork(Request $request){
         $work = new worktype();
         $work->work_id = $request->addWork;
         $work->work_type = $request->addWork;
+        $work->image = 'images/works/'.$request->addWork;
+        $request->file($request->addImage)->move('images/works', $request->addWork);
         if ($work->save()){
             return response($work, 200);
         }
+    }
+
+    // Thêm công việc không ajax
+    public function addw(Request $request)
+    {
+        $work = new worktype();
+        $work->work_id = $request->addwork;
+        $work->work_type = $request->addwork;
+        $work->image = 'images/works/'.$request->addwork;
+        $work->save();
+        $request->file('addimage')->move('images/works', $request->addwork);
+        return back();
     }
     //Xóa công việc
     public function deletework($id){
@@ -70,6 +84,18 @@ class adminController extends Controller
         if ($work->save()){
             return response($work, 200);
         }
+    }
+
+    //Sửa công việc không ajax
+    public function editw(Request $request, $id)
+    {
+        $work = worktype::find($id);
+        $work->work_id = $request->addwork;
+        $work->work_type = $request->addwork;
+        $work->image = 'images/works/'.$request->addwork;
+        $work->save();
+        $request->file('addimage')->move('images/works', $request->addwork);
+        return back();
     }
     //Xóa bài đăng
     public function deletepost($id) {

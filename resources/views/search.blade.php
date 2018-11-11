@@ -1,9 +1,9 @@
-@extends('user.navbar')
+@extends('base')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.css" />
 @section('pgContent')
 <div id="pgContent" class="clearfix">
     <div class="rvn-menu-bar hidden-xs">
-        <form class="frmSearch" action="{{ route('usersearch') }}" method="POST">
+        <form class="frmSearch" action="{{ route('search') }}" method="POST">
             {{ csrf_field() }}
             <div class="container">
                 <div class="rvn-menu-cate">
@@ -156,7 +156,7 @@
                         <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
                                 <div class="rvn-item-image text-center" id="itm_img6973827">
-                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90"></div>
+                                    <img src="{{ $item->image }}" class="rounded-bo" width="90"></div>
                                 <div class="rvn-item-content">
                                     <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>

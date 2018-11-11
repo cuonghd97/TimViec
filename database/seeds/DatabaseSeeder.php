@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $admin = new Admin();
         $admin->name = 'Super Admin';
-        $admin->email = 'supperadmin@admin.com';
+        $admin->email = 'superadmin@admin.com';
         $admin->password = bcrypt('123456');
         $admin->admin_id = '124566';
         $admin->save();

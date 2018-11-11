@@ -16,13 +16,20 @@
     <div class="container">
         <!-- Start Page Content -->
         <div class="row">
-            {{ csrf_field() }}
-            <div class="form-group col-sm-5">
-                <input type="text" name="addwork" class="form-control" id="addwork" placeholder="Thêm loại công việc...">
-            </div>
-            <div class="col-sm-3 form-group">
-                <button type="button" class="btn btn-primary" id="btaddwork">Thêm</button>
-            </div>
+            <form enctype="multipart/form-data" style="width: 100%" method="POST" action="{{ action('adminController@addw') }}">
+                {{ csrf_field() }}
+                <div class="form-group col-sm-4">
+                    <input type="text" name="addwork" class="form-control" id="addwork" placeholder="Thêm loại công việc...">
+                </div>
+                <div class="form-group col-sm-4" style="margin-left: 15px">
+                    <input type="file" name="addimage" class="form-control custom-file-input" id="addimage">
+                    <label for="addimage" class="custom-file-label">Thêm ảnh mô tả: </label>
+                </div>
+                <div class="col-sm-3 form-group">
+                    {{-- <button type="button" class="btn btn-primary" id="btaddwork">Thêm</button> --}}
+                    <input type="submit" class="btn btn-primary" value="Thêm">
+                </div>
+            </form>
         </div>
         <div class="row">
             <table id="work" class="table">
@@ -30,6 +37,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Tên công việc</th>
+                        <th>Ảnh</th>
                         <th>Chỉnh sửa</th>
                     </tr>
                 </thead>
@@ -39,8 +47,7 @@
             </table>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
