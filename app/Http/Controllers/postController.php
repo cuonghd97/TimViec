@@ -47,7 +47,7 @@ class postController extends Controller
         ->where('province', 'like', $request->search_loca)
         ->paginate(15);
         else
-        if ($request->search_loca == 'Toàn quốc...' && $request->search_kat != 'Chọn...')
+        if ($request->search_loca == 'Toàn quốc...' 8&& $request->search_kat != 'Chọn...')
         $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
         ->where('type', 'like', $request->search_kat)
         ->paginate(15);
@@ -64,10 +64,10 @@ class postController extends Controller
         return view('search', compact(['sprovinces', 'posts', 'swork']));
     }
 
-    // Trả về tỉnh về trang index của guest 
+    // Trả về tỉnh về trang index của guest
     public function provincesguest()
     {
-        
+
     }
 
     // Chức năng search dùng cho khi đã đăng nhập
@@ -185,9 +185,11 @@ class postController extends Controller
         $po->age = $request->age;
         $po->salary = $request->salary;
         $po->gender = $request->gender_list;
+        $work = worktype::where('work_type', 'like', $request->type)->first();
+        $po->image = $work->image;
         $po->save();
         if ($request->hasFile('avatar')){
-            $po->image = 'images/posts/'.$po->post_id;
+            $po->image_of_post = 'images/posts/'.$po->post_id;
                 $po->save();
             $request->file('avatar')->move('images/posts', $po->post_id);
         }

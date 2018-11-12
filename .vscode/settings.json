@@ -1,0 +1,18 @@
+{
+    "editor.fontFamily": "'Source Code Pro Semibold'",
+    "editor.fontSize": 16,
+    "editor.fontWeight": "bold",
+    "editor.lineNumbers": "relative",
+    "editor.renderLineHighlight": "all",
+    "editor.lineHeight": 28,
+    "editor.cursorBlinking": "phase",
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.rulers": [80],
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.tabCompletion": true,
+}
