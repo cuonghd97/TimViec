@@ -45,12 +45,12 @@ Route::group(['prefix' => 'user'], function () {
         return view('user.post');
     })->name('dangtin');
     Route::post('addpost', 'postController@addPost')->name('user.addpost');
-    
+    // Data tỉnh dạng Json
     Route::get('provinces-data', function(){
         $data = App\Provinces::all('province_id', 'province_name');
         return response()->json($data);
     });
-
+    // Data huyện dạng Json
     Route::get('districts-data', function(){
         $data = App\Districts::all('province_id', 'districts_name');
         return response()->json($data);
@@ -59,7 +59,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('typework-data', function() {
         $data = App\worktype::all('work_id', 'work_type');
         return response()->json($data);
-    }); 
+    });
 
     Route::get('/index', 'postController@userpost')->name('user.index');
 
@@ -78,7 +78,7 @@ Route::group(['prefix' => 'user'], function () {
 
     //Tất cả các bài đăng
     Route::get('/allposts', 'postController@userpost')->name('user.allposts');
-    //Tìm kiếm bài đăng 
+    //Tìm kiếm bài đăng
     Route::post('/search', 'postController@usersearch')->name('usersearch');
     Route::get('search/title', function() {
       $data = App\posts::all('title');
@@ -146,8 +146,21 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('editwork/{id}', 'adminController@editwork');
   // Thêm việc không dùng ajax
   Route::post('add', 'adminController@addw');
-  // Xóa việc không dùng ajax 
+  // Xóa việc không dùng ajax
   Route::get('deletew/{id}', 'adminController@deletew')->name('xoaviec');
+  // Hiện data công việc dạng json
+  Route::get('work-data', function() {
+    $data = App\worktype::all();
+    return response()->json($data);
+  });
+  // Thêm workdetail
+  Route::post('add-work-detail', 'adminController@addworkdetail');
+  // Workdetail data
+  Route::get('workdetail-data', function() {
+    $data = App\workdetail::all();
+    return response()->json($data);
+  });
+  Route::get('delete-work-data/{id}', 'adminController@deleteworkdetail');
 
   //Sửa, xóa bài đăng
   Route::get('posts', function() {

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Provinces; 
+use App\Provinces;
 use App\Districts;
 use DB;
 use App\worktype;
 use App\posts;
+use App\workdetail;
 
 class adminController extends Controller
 {
@@ -49,18 +50,6 @@ class adminController extends Controller
         Districts::destroy($id);
     }
 
-    //Thêm công việc ajax
-    public function addwork(Request $request){
-        $work = new worktype();
-        $work->work_id = $request->addWork;
-        $work->work_type = $request->addWork;
-        $work->image = 'images/works/'.$request->addWork;
-        $request->file($request->addImage)->move('images/works', $request->addWork);
-        if ($work->save()){
-            return response($work, 200);
-        }
-    }
-
     // Thêm công việc không ajax
     public function addw(Request $request)
     {
@@ -76,15 +65,6 @@ class adminController extends Controller
     public function deletework($id){
         worktype::destroy($id);
     }
-    //Sửa công việc
-    public function editwork($id, Request $request) {
-        $work = worktype::find($id);
-        $work->work_id = $request->editWork;
-        $work->work_type = $request->editWork;
-        if ($work->save()){
-            return response($work, 200);
-        }
-    }
 
     //Sửa công việc không ajax
     public function editw(Request $request, $id)
@@ -97,14 +77,30 @@ class adminController extends Controller
         $request->file('addimage')->move('images/works', $request->addwork);
         return back();
     }
+    // Thêm workdetail
+    public function addworkdetail(Request $req){
+        $work = new workdetail();
+        $work->work_id = $req->addBigWork;
+        $work->work_more = $req->addWork;
+        if ($work->save()){
+            return response($work, 200);
+        }
+    }
+
+    // Xóa workdetail
+    public function deleteworkdetail($id){
+        workdetail::destroy($id);
+    }
 
     // Hiện công việc
     public function showwork() {
         $datawork = worktype::all();
         return view('admin.work', compact(['datawork']));
     }
-    // Xóa việc 
+    // Xóa việc
     public function deletew($id){
+        $work = worktype::find($id)->work_type;
+        DB::table('workdetails')->where('work_id', $work)->delete();
         worktype::destroy($id);
         return back();
     }

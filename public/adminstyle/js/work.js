@@ -1,101 +1,105 @@
 $(document).ready(function () {
-    //Hiển thị lên datatable
-    var table = $('#work').DataTable({
-        "destroy": true,
-        "ajax": {
-            "url": "/admin/work",
-            "dataSrc": ""
-        },
-        "columns": [{
-                "data": "id"
-            },
-            {
-                "data": "work_type"
-            },
-            {
-                "data": "image",
-                "render": function(data, type, row, meta) {
-                    return '<img src="{{ asset("' + data +'") }}" />'
-                }
-            }
-        ],
-        "columnDefs": [{
-            "targets": 3,
-            "data": null,
-            "defaultContent": `
-                                <a class='btn btn-danger xoa'><i class="fa fa-times"></i></a>`
-        }],
-        "displayLength": 10,
-        createdRow: function (row, data, dataIndex) {
-            $(row).find('.xoa').attr('data-id', data.id);
-            $(row).find('td').attr('id', 'rowblack');
-            $(row).find('button').attr('id', data.id);
-            // $(row).find('a').attr('href', 'editprovince/' + data.id);
-        },
+    $.ajax({
+        url: '/admin/work-data',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var element = ``
+            $.each(data, function (key, entry) {
+                element += `<option> ${entry.work_type}</option>`
+                $('#listwork').html(element)
+            })
+        }
     })
-    var idwork
-    $('#work tbody').on('click', 'button', function() {
-        let data = table.row( $(this).parents('tr') ).data()
-        $('#editwork').val(data['work_type'])
-        idwork = data['id']
+    $('#listwork').change(function () {
+        var cwork = $(this).val()
+        $('#workbody').find('tr').remove().end()
+        $.ajax({
+            url: '/admin/workdetail-data',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var element=``
+                $.each(data, function (key, value) {
+                    if (value.work_id == cwork) {
+                        element += `<tr>
+                        <td>${value.work_more}</td>
+                        <td><button id=${value.id} class='btn btn-danger btdelete'>
+                        <i class='fa fa-times'></i></button></td>
+                        </tr>`
+                        $('#workbody').html(element)
+                    }
+                })
+            }
+        })
     })
 
-    //Sửa loại công việc
-    $('#btnedit').on('click', function(e) {
-        e.preventDefault();
+    $('#btnaddmore').on('click', function () {
+        var work = $('#listwork').val()
         var data = {
-            editWork: document.getElementById('editwork').value
+            addBigWork: work,
+            addWork: document.getElementById('more').value
         }
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
+        })
         $.ajax({
-                url: 'editwork/' + idwork,
+                url: 'add-work-detail',
                 type: 'POST',
                 data: data
             })
             .done(res => {
-                console.log('success')
-                table.ajax.reload(null, false)
-            })        
-    })
-    //Thêm loại công việc
-    $('#btaddwork').on('click', function (e) {
-        e.preventDefault();
-        var data = {
-            addWork: document.getElementById('addwork').value,
-            addImage: document.getElementById('addimage').value
-        }
-        console.log(document.getElementById('addimage').value)
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-                url: 'addwork',
-                type: 'POST',
-                data: data
+                $('#more').val('')
+                $('#more').focus()
+                $.ajax({
+                    url: '/admin/workdetail-data',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        var element=``
+                        $.each(data, function (key, value) {
+                            if (value.work_id == $('#listwork').val()) {
+                                element += `<tr>
+                        <td>${value.work_more}</td>
+                        <td><button id=${value.id} class='btn btn-danger btdelete'>
+                        <i class='fa fa-times'></i></button></td>
+                        </tr>`
+                                $('#workbody').html(element)
+                            }
+                        })
+                    }
+                })
             })
-            .done(res => {
-                console.log('success')
-                table.ajax.reload(null, false)
-            })        
     })
-    //Xóa loại công việc
-    $('body').on('click', '.xoa', function () {
+    $('#workbody').on('click', '.btdelete', function () {
         xoa(this)
-        table.ajax.reload(null, false)
     })
-
     function xoa(e) {
-        var id = $(e).data('id');
+        var id = $(e).attr('id')
         $.ajax({
-            url: 'deletework/' + id,
+            url: 'delete-work-data/' + id,
             success() {
-                table.ajax.reload(null, false)
+                $.ajax({
+                    url: '/admin/workdetail-data',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#workbody').find('tr').remove().end()
+                        var element = ``
+                        $.each(data, function (key, value) {
+                            if (value.work_id == $('#listwork').val()) {
+                                element += `<tr>
+                        <td>${value.work_more}</td>
+                        <td><button id=${value.id} class='btn btn-danger btdelete'>
+                        <i class='fa fa-times'></i></button></td>
+                        </tr>`
+                                $('#workbody').html(element)
+                            }
+                        })
+                    }
+                })
             }
         })
     }

@@ -143,7 +143,7 @@
             <div class="rows ftr-4cols hidden-xs clearfix">
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-title">Thông tin liên hệ</div>
-    
+
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-title">Thông tin về trang web</div>
@@ -157,7 +157,7 @@
             </div>
             <div class="rows hidden-xs clearfix">
                 <div class="col-md-3 col-sm-4">
-    
+
                     <div class="ftr-content">
                         Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
                             class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
@@ -166,7 +166,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-content">
@@ -182,7 +182,7 @@
                                 Hướng dẫn đăng ký thành viên</a></div>
                         <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
                                 đăng tin</a></div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -204,6 +204,7 @@
     var currentdistrict = '{{$userinfo->user_district}}'
 
     var province = $('#provinces_list')
+    console.log(province)
     var district = $('#districts_list')
     $.getJSON('/user/provinces-data', function (data) {
         $.each(data, function (key, entry) {

@@ -25,7 +25,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand reload" href="/"><img src="/images/logo.png" width="165" height="42" border="0" style="margin-top: -6px;"></a>
+        <a class="navbar-brand reload" href="/"><img src="/images/logo.png" width="80" height="42" border="0" style="margin-top: -6px;"></a>
 
 
       </div>
@@ -56,7 +56,7 @@
     </div>
   </nav>
   @section('pgContent')
-      
+
   @show
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>

@@ -47,7 +47,7 @@ class postController extends Controller
         ->where('province', 'like', $request->search_loca)
         ->paginate(15);
         else
-        if ($request->search_loca == 'Toàn quốc...' 8&& $request->search_kat != 'Chọn...')
+        if ($request->search_loca == 'Toàn quốc...' && $request->search_kat != 'Chọn...')
         $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')
         ->where('type', 'like', $request->search_kat)
         ->paginate(15);

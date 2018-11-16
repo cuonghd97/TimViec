@@ -16,7 +16,7 @@
     <div class="container">
         <!-- Start Page Content -->
         <div class="row">
-            <form enctype="multipart/form-data" style="width: 100%" method="POST" action="{{ action('adminController@addw') }}">
+            <form id="form_upload" enctype="multipart/form-data" style="width: 100%" method="POST" action="{{ action('adminController@addw') }}">
                 {{ csrf_field() }}
                 <div class="form-group col-sm-4">
                     <input type="text" name="addwork" class="form-control" id="addwork" placeholder="Thêm loại công việc...">
@@ -32,28 +32,60 @@
             </form>
         </div>
         <div class="row">
-            <table id="work" class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên công việc</th>
-                        <th>Ảnh</th>
-                        <th>Chỉnh sửa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($datawork as $item)
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->work_type }}</td>
-                        <td><img src="{{ asset($item->image) }}" alt="" style="width:200px; height: auto;"></td>
-                        <td>
-                            <a href="{{ route('xoaviec', ['id' => $item->id]) }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>                        
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="col-md-6">
+                <table id="work" class="table" style="background: white;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên công việc</th>
+                            <th>Ảnh</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($datawork as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->work_type }}</td>
+                            <td><img src="{{ asset($item->image) }}" alt="" style="width:200px; height: auto;"></td>
+                            <td>
+                                <a href="{{ route('xoaviec', ['id' => $item->id]) }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="listwork">Chọn loại việc</label>
+                            <select name="listwork" id="listwork" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="more">Chi tiết công việc:</label>
+                            {{ csrf_field() }}
+                            <input type="text" name="more" id="more" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" id="btnaddmore">Thêm</button>
+                        </div>
+                    </div>
+                    <table class="table" style="background: white;">
+                        <thead>
+                            <tr>
+                                <th>Công việc</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,5 +118,5 @@
 <script src="{{ asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('adminstyle/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('adminstyle/DataTables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
-{{-- <script src="{{ asset('adminstyle/js/work.js') }}"></script> --}}
+<script src="{{ asset('adminstyle/js/work.js') }}"></script>
 @endsection

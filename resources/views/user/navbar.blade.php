@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand reload" href="/user/allposts"><img src="/images/logo.png" width="165" border="0" height="42"></a>
+                <a class="navbar-brand reload" href="/user/allposts"><img src="/images/logo.png" width="80" border="0" height="42"></a>
 
 
             </div>
@@ -108,9 +108,9 @@
         </div>
     </nav>
     <!-- Các bản tin được hiển thị ở đây-->
-    
+
     <!--Kết thúc hiển thị-->
-    
+
     @section('pgContent')
 
     @show
