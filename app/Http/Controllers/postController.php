@@ -8,6 +8,7 @@ use App\worktype;
 use App\posts;
 use App\User;
 use App\Provinces;
+use App\workdetail;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DB;
 use Ramsey\Uuid\Uuid;
@@ -27,7 +28,9 @@ class postController extends Controller
         $posts = posts::paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
-        return view('index', compact(['sprovinces', 'posts', 'swork']));
+        $workdetail = workdetail::all();
+
+        return view('index', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
         // return view('index', ['posts' => $posts],);
     }
 
@@ -38,6 +41,7 @@ class postController extends Controller
         $posts = posts::paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
+        $workdetail = workdetail::all();
 
         if ($request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')->paginate(15);
@@ -61,7 +65,7 @@ class postController extends Controller
         if ($request->searchdata == null && $request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         return redirect()->action('postController@index');
         else
-        return view('search', compact(['sprovinces', 'posts', 'swork']));
+        return view('search', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
     }
 
     // Trả về tỉnh về trang index của guest
@@ -76,6 +80,7 @@ class postController extends Controller
         $posts = posts::paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
+        $workdetail = workdetail::all();
 
         if ($request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')->paginate(15);
@@ -99,21 +104,25 @@ class postController extends Controller
         if ($request->searchdata == null && $request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         return redirect()->action('postController@userpost');
         else
-        return view('user.search', compact(['sprovinces', 'posts', 'swork']));
+        return view('user.search', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
     }
     // Lọc theo loại công viêc
     public function bywork($work){
         $posts = posts::where('type', 'like', $work)->paginate(15);
+        if ($posts->count() == 0)
+        $posts = posts::where('detail', 'like', $work)->paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
-        return view('bywork', compact(['sprovinces', 'posts', 'swork']));
+        $workdetail = workdetail::all();
+        return view('bywork', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
     }
     public function userpost()
     {
         $posts = posts::paginate(18);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
-    	return view('user.allposts', compact(['sprovinces', 'posts', 'swork']));
+        $workdetail = workdetail::all();
+    	return view('user.allposts', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
     }
 
     /**
@@ -176,6 +185,7 @@ class postController extends Controller
         $po->user_id = $request->user_id;
         $po->type_post = $request->typepost;
         $po->type = $request->type;
+        $po->detail = $request->detail;
         $po->title = $request->title;
         $po->content = $request->content;
         $po->address = $request->address;
@@ -185,15 +195,24 @@ class postController extends Controller
         $po->age = $request->age;
         $po->salary = $request->salary;
         $po->gender = $request->gender_list;
-        $work = worktype::where('work_type', 'like', $request->type)->first();
-        $po->image = $work->image;
-        $po->save();
+        // $work = worktype::where('work_type', 'like', $request->type)->first();
+        // if ($request->type == '--Chọn--')
+        // $po->image = 'null';
+        // else
+        // $po->image = $work->image;
         if ($request->hasFile('avatar')){
             $po->image_of_post = 'images/posts/'.$po->post_id;
-                $po->save();
+            $po->image = 'images/posts/'.$po->post_id;
+            $po->save();
             $request->file('avatar')->move('images/posts', $po->post_id);
         }
-        return redirect()->route('user.myposts');
+        if ($request->type == '--Chọn--')
+        return back()->with('message', 'Chưa chọn loại công việc');
+        else{
+            $po->save();
+            return redirect()->route('user.myposts')->with('message', 'Sửa bài thành công');
+        }
+
     }
 
     /**
@@ -228,9 +247,12 @@ class postController extends Controller
     // Lọc theo loại công viêc cho user
     public function byworkuser($work){
         $posts = posts::where('type', 'like', $work)->paginate(15);
+        if ($posts->count() == 0)
+        $posts = posts::where('detail', 'like', $work)->paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
-        return view('user.bywork', compact(['sprovinces', 'posts', 'swork']));
+        $workdetail = workdetail::all();
+        return view('user.bywork', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
     }
 
     //Thêm bài đăng mới
@@ -240,6 +262,7 @@ class postController extends Controller
         $po->user_id = $request->user_id;
         $po->type_post = $request->typepost;
         $po->type = $request->type;
+        $po->detail = $request->detail;
         $po->title = $request->title;
         $po->content = $request->content;
         $po->address = $request->address;
@@ -249,12 +272,13 @@ class postController extends Controller
         $po->age = $request->age;
         $po->salary = $request->salary;
         $po->gender = $request->gender_list;
-        $work = worktype::where('work_type', 'like', $request->type)->first();
-        $po->image = $work->image;
+        // $work = worktype::where('work_type', 'like', $request->type)->first();
+        // $po->image = $work->image;
         $po->save();
         if ($request->hasFile('avatar')){
             $po->image_of_post = 'images/posts/'.$po->post_id;
-                $po->save();
+            $po->image = 'images/posts/'.$po->post_id;
+            $po->save();
             $request->file('avatar')->move('images/posts', $po->post_id);
         }
         return redirect()->route('dangtin')->with('message', 'Đăng bài thành công');

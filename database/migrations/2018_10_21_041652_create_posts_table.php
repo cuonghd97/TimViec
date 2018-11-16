@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('title', 191)->nullable();
             $table->text('content')->nullable();
             $table->string('type', 191)->nullable();
+            $table->string('detail', 191)->nullable();
             $table->string('image', 191)->default('images/posts/landscape.jpeg');
             $table->string('image_of_post', 191)->nullable();
             $table->integer('age')->nullable();

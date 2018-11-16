@@ -72,7 +72,7 @@
                     <div class="cate-icons rows " id="cateicons">
                             @foreach ($swork as $item)
                             <div class='cate-group main-cate-icon' style="margin-top: 40px;">
-                                <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
+                                <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
                                     <div>
                                         <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 100px; height: 100px;">
                                     </div>
@@ -83,7 +83,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
         <div class="rows hidden" id="home_cate_paging2">
@@ -99,38 +99,7 @@
         <div class="rows">
             <div class="rvn-items col-md-12">
                 <form method="post" name="frmLocationsFilter" id="frmLocationsFilter">
-                    <div id="locFilterDiv" class="visible-xs"><select id='locFilter' name='locFilter' class='chosen-select form-control'>
-                            <option value='0'>Toàn quốc</option>
-                            <option value='11'>Hồ Chí Minh</option>'<option value='1'>Hà Nội</option>'<option value='4'>Đà
-                                Nẵng</option>'<option value='53'>Hải Phòng</option>'<option value='250'>Bình Dương</option>'<option
-                                value='210'>Cần Thơ</option>'<option value='14'>Khánh Hòa</option>'<option value='195'>An
-                                Giang</option>'<option value='233'>Bình Phước</option>'<option value='9'>Bình Thuận</option>'<option
-                                value='238'>Bình Định</option>'<option value='228'>Bạc Liêu</option>'<option value='268'>Bắc
-                                Giang</option>'<option value='269'>Bắc Kạn</option>'<option value='260'>Bắc Ninh</option>'<option
-                                value='254'>Bến Tre</option>'<option value='523'>Cao Bằng</option>'<option value='192'>Cà
-                                Mau</option>'<option value='181'>Đắk Lắk</option>'<option value='784'>Đắk Nông</option>'<option
-                                value='216'>Đồng Nai</option>'<option value='71'>Đồng Tháp</option>'<option value='792'>Điện
-                                Biên</option>'<option value='72'>Gia Lai</option>'<option value='77'>Hà Giang</option>'<option
-                                value='109'>Hà Nam</option>'<option value='98'>Hà Tĩnh</option>'<option value='92'>Hải
-                                Dương</option>'<option value='540'>Hậu Giang</option>'<option value='130'>Hoà Bình</option>'<option
-                                value='2'>Huế</option>'<option value='141'>Hưng Yên</option>'<option value='154'>Kiên
-                                Giang</option>'<option value='689'>Kon Tum</option>'<option value='175'>Lai Châu</option>'<option
-                                value='162'>Lào Cai</option>'<option value='285'>Lâm Đồng</option>'<option value='59'>Lạng
-                                Sơn</option>'<option value='294'>Long An</option>'<option value='380'>Nam Định</option>'<option
-                                value='511'>Nghệ An</option>'<option value='520'>Ninh Bình</option>'<option value='392'>Ninh
-                                Thuận</option>'<option value='396'>Phú Thọ</option>'<option value='6'>Phú Yên</option>'<option
-                                value='416'>Quảng Bình</option>'<option value='424'>Quảng Nam</option>'<option value='438'>Quảng
-                                Ngãi</option>'<option value='451'>Quảng
-                                Ninh</option>'<option value='465'>Quảng Trị</option>'<option value='514'>Sóc Trăng</option>'<option
-                                value='501'>Sơn
-                                La</option>'<option value='495'>Tây Ninh</option>'<option value='348'>Thanh Hoá</option>'<option
-                                value='485'>Thái Bình</option>'<option value='474'>Thái Nguyên</option>'<option value='341'>Tiền
-                                Giang</option>'<option value='332'>Trà
-                                Vinh</option>'<option value='314'>Tuyên
-                                Quang</option>'<option value='277'>Vũng Tàu</option>'<option value='321'>Vĩnh Long</option>'<option
-                                value='186'>Vĩnh Phúc</option>'<option value='323'>Yên Bái</option>'<option value='903'>Các
-                                tỉnh khác</option>'
-                        </select></div>
+
                     <input type="hidden" name="scatid" value="0" />
                 </form>
 
@@ -156,7 +125,7 @@
                                         <i class="fa fa-clock-o fa-fw"></i> {{ $item->created_at }}
                                     </div>
                                     <div class="rvn-item-date ">
-                                        <i class="fa fa-eye fa-fw"></i> {{ $item->views }}  
+                                        <i class="fa fa-eye fa-fw"></i> {{ $item->views }}
                                     </div>
                                 </div>
                             </div>
@@ -184,6 +153,32 @@
                     @endforeach
                     <div class="clearfix"></div>
                 </div>
+            </div>
+            <div class="rows hidden-xs">
+                <div class="postad-category clearfix">XEM TIN THEO DANH MỤC</div>
+                @foreach ($swork as $item)
+                <div class="full-category clearfix">
+                    <div class="category-list">
+                        <div class="cate-name">
+                            <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
+                                {{ $item->work_type }}
+                            </a>
+                        </div>
+                        <ul class="category-ul">
+                            @php
+                                $wt = $item->work_type
+                            @endphp
+                            @foreach ($workdetail as $item)
+                            @if ( $wt == $item->work_id )
+                            <li>
+                                <a href='{{ route('byworkuser', ['work' => $item->work_more]) }}'>{{$item->work_more}}</a>
+                            </li>
+                            @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

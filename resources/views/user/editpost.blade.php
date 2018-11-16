@@ -11,8 +11,13 @@
                 <i class="fa fa-info-circle fa-fw"></i> Đăng bài
             </div>
             <form method="POST" action="{{ action('postController@update', ['id'=>$data->id]) }}" enctype="multipart/form-data">
-                {{ csrf_field() }} 
-                {{ method_field('PUT') }}      
+                {{ csrf_field() }}
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                    @endif
+                {{ method_field('PUT') }}
                 <input type="hidden" name="user_id" value="{{ Auth::guard('user')->user()->user_id }}">
                 <div class="row row-post">
                     <div class="col-xs-6">
@@ -25,10 +30,20 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="row row-post">
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="sel1">Loại công việc:</label>
                             <select class="form-control" name="type" id="type">
+                                <option selected value="--Chọn--">--Chọn--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="sel1">Chi tiết công việc:</label>
+                            <select class="form-control" name="detail" id="detail">
                                 <option selected value="--Chọn--">--Chọn--</option>
                             </select>
                         </div>
@@ -44,7 +59,7 @@
                     <div class="col-xs-5">
                         <div class="form-group">
                             <label for="avatar">
-                                <img src="{{ asset($data->image) }}" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
+                                <img src="{{ asset($data->image_of_post ) }}" alt="" style="width: 100px; height: 100px;" id="blah" class="img-rounded">
                             </label>
                             <span>Chọn ảnh</span>
                             <input type="file" name="avatar" onchange="readURL(this);" id="avatar">
@@ -140,7 +155,7 @@
             <div class="rows ftr-4cols hidden-xs clearfix">
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-title">Thông tin liên hệ</div>
-    
+
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-title">Thông tin về trang web</div>
@@ -154,7 +169,7 @@
             </div>
             <div class="rows hidden-xs clearfix">
                 <div class="col-md-3 col-sm-4">
-    
+
                     <div class="ftr-content">
                         Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
                             class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
@@ -163,7 +178,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-content">
@@ -179,7 +194,7 @@
                                 Hướng dẫn đăng ký thành viên</a></div>
                         <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
                                 đăng tin</a></div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -221,13 +236,24 @@
     var typework = '{{$data->type}}'
     $.getJSON('/user/typework-data', function(data) {
         $.each(data, function (key, entry) {
-            if (typework == entry.work_type)
-            worktype.append($('<option selected="selected"></option>').attr('value', entry.work_type).text(entry.work_type))
-            else
+            // if (typework == entry.work_type)
+            // worktype.append($('<option selected="selected"></option>').attr('value', entry.work_type).text(entry.work_type))
+            // else
             worktype.append($('<option></option>').attr('value', entry.work_type).text(entry.work_type))
         })
     })
-    
+    var detail = $('#detail')
+    worktype.change(function () {
+        $('#detail').find('option').remove().end().append('<option value="">--Chọn--</option>')
+        let work = $(this).val()
+        $.getJSON('/user/detailwork-data', function (data) {
+            $.each(data, function (key, entry) {
+                if (work == entry.work_id)
+                detail.append($('<option></option>').attr('value', entry.work_more).text(entry.work_more))
+            })
+        })
+    })
+
     var currentprovince = '{{$data->province}}'
     var currentdistrict = '{{$data->district}}'
 

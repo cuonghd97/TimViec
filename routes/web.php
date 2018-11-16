@@ -56,9 +56,16 @@ Route::group(['prefix' => 'user'], function () {
         return response()->json($data);
     });
 
+    // Data công việc dạng json
     Route::get('typework-data', function() {
         $data = App\worktype::all('work_id', 'work_type');
         return response()->json($data);
+    });
+
+    // Data chi tiết công việc dạng json
+    Route::get('detailwork-data', function() {
+      $data = App\workdetail::all();
+      return response()->json($data);
     });
 
     Route::get('/index', 'postController@userpost')->name('user.index');
@@ -85,7 +92,7 @@ Route::group(['prefix' => 'user'], function () {
       return response()->json($data);
     });
     // Lọc bài đăng
-    Route::get('loc-theo-cong-viec/{work}', 'postController@byworkuser');
+    Route::get('loc-theo-cong-viec/{work}', 'postController@byworkuser')->name('byworkuser');
 });
 
 Route::resource('posts', 'postController');

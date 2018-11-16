@@ -102,17 +102,17 @@
                 <div class="clearfix">
                     <p>&nbsp;</p>
                 </div>
-                <div class="latest-items clearfix">
+                <div class="latest-items clearfix" style="margin-top: 50px;">
                     <i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
                 <div id="LISTITEMS">
                     @foreach ($posts as $item)
-                    <div class="listItem clearfix" style="float: left;">
+                    <div class="listItem" style="float: left;">
                         <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
-                                <div class="rvn-item-image text-center" id="itm_img6973827">
-                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 90px;"></div>
+                                <div class="rvn-item-image text-center">
+                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 90px;">
+                                </div>
                                 <div class="rvn-item-content">
-                                    <div class="rvn-item-no"><span class="badge">B</span></div>
                                     <div class="rvn-item-title">{{$item->title}}</div>
                                     <div class="rvn-item-date">
                                         <i class="fa fa-compass"></i> {{ $item->province }}
@@ -121,7 +121,7 @@
                                         <i class="fa fa-clock-o fa-fw"></i> {{ $item->created_at }}
                                     </div>
                                     <div class="rvn-item-date ">
-                                        <i class="fa fa-eye fa-fw"></i> {{ $item->views }}  
+                                        <i class="fa fa-eye fa-fw"></i> {{ $item->views }}
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +133,32 @@
             <div class="clearfix"></div>
             {!! $posts->links() !!}
             </form>
-
+            <div class="rows hidden-xs">
+                <div class="postad-category clearfix">XEM TIN THEO DANH MỤC</div>
+                @foreach ($swork as $item)
+                <div class="full-category clearfix">
+                    <div class="category-list">
+                        <div class="cate-name">
+                            <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
+                                {{ $item->work_type }}
+                            </a>
+                        </div>
+                        <ul class="category-ul">
+                            @php
+                                $wt = $item->work_type
+                            @endphp
+                            @foreach ($workdetail as $item)
+                            @if ( $wt == $item->work_id )
+                            <li>
+                                <a href='{{ route('bywork', ['work' => $item->work_more]) }}'>{{$item->work_more}}</a>
+                            </li>
+                            @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
             <!--<div class="rows hidden-xs">
                 <div class="postad-category clearfix">ĐĂNG TIN NHANH THEO CHUYÊN MỤC</div>

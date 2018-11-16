@@ -28,4 +28,16 @@ $(document).ready(function () {
             worktype.append($('<option></option>').attr('value', entry.work_type).text(entry.work_type))
         })
     })
+
+    var detail = $('#detail')
+    worktype.change(function () {
+        $('#detail').find('option').remove().end().append('<option value="">--Chọn--</option>')
+        let work = $(this).val()
+        $.getJSON('/user/detailwork-data', function (data) {
+            $.each(data, function (key, entry) {
+                if (work == entry.work_id)
+                detail.append($('<option></option>').attr('value', entry.work_more).text(entry.work_more))
+            })
+        })
+    })
 });
