@@ -33,8 +33,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/?logout=1"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất
-                            </a>
+                            <a href="{{ route('login') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out"></i>
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                         </li>
                     </ul>
                 </div>
