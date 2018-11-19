@@ -15,15 +15,27 @@
                         <div class="panel-title sb-name"><span class="badge">{{ Auth::guard('user')->user()->name }}</span> </div>
                     </div>
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="list-menu"><a href="/tin-nhan"><i class="fa fa-comments-o fa-fw"></i> Tin nhắn <span class="label label-danger pull-right"></span></a></li>
-                        <li class="list-menu"><a href="{{ route('user.myposts') }}"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin</a></li>
-                        <li class="list-menu"><a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw"></i> Đăng tin</a></li>
+                        <li class="list-menu">
+                            <a href="{{ route('user.myposts') }}"><i class="fa fa-wpforms fa-fw"></i> Chỉnh sửa bản tin
+                            </a>
+                        </li>
+                        <li class="list-menu">
+                            <a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw"></i> Đăng tin
+                            </a>
+                        </li>
                         <li role="separator" class="divider"></li>
-                        <li class="list-menu"><a href="{{ action('userController@info', ['id'=>Auth::guard('user')->user()->id]) }}"><i class="fa fa-user fa-fw"></i> Thông tin tài
-                                khoản</a></li>
-                        <li class="list-menu"><a href="/mat-khau"><i class="fa fa-key fa-fw"></i> Đổi mật khẩu</a></li>
-                        <li><a href="/?logout=1"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a></li>
-
+                        <li class="list-menu">
+                            <a href="{{ action('userController@info', ['id'=>Auth::guard('user')->user()->id]) }}"><i class="fa fa-user fa-fw"></i> Thông tin tài khoản
+                            </a>
+                        </li>
+                        <li class="list-menu">
+                            <a href="{{ action('userController@idchangepass', ['id'=>Auth::guard('user')->user()->id]) }}"><i class="fa fa-key fa-fw"></i> Đổi mật khẩu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/?logout=1"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất
+                            </a>
+                        </li>
                     </ul>
                 </div>
 

@@ -18,14 +18,23 @@
                     @endif
 
                     <div class="rows">
-                        <div class="col-xs-3"><i class="fa fa-user-circle-o fa-fw"></i> Tên liên hệ</div>
+
+                        <div class="col-xs-3">
+                            <div class="form-control" style="border: 0;">
+                                <i class="fa fa-user-circle-o fa-fw"></i> Tên liên hệ
+                            </div>
+                        </div>
                         <div class="col-xs-7">
                             <input type="text" name="name" value="{{ $userinfo->name }}" size="30" maxlength="30" class="form-control">
                         </div>
                     </div>
 
                     <div class="rows">
-                        <div class="col-xs-3"><i class="fa fa-transgender-alt"></i> Giới tính</div>
+                        <div class="col-xs-3">
+                            <div class="form-control" style="border: 0;">
+                                <i class="fa fa-transgender-alt"></i> Giới tính
+                            </div>
+                        </div>
                         <div class="col-xs-3 fixtop">
                             <div class="form-group">
                                 <select class="form-control" name="gender" id="gender">
@@ -37,13 +46,21 @@
                         </div>
                     </div>
                     <div class="rows">
-                        <div class="col-xs-3"><i class="fa fa-transgender-alt"></i> Ngày sinh</div>
+                        <div class="col-xs-3">
+                            <div class="form-control" style="border: 0;">
+                                <i class="fa fa-calendar"></i> Ngày sinh
+                            </div>
+                        </div>
                         <div class="col-xs-4">
                             <input id="datepicker" name="birthday" width="276" value="{{ $userinfo->user_birthday }}" />
                         </div>
                     </div>
                     <div class="rows">
-                        <div class="col-xs-3"><i class="fa fa-envelope-o fa-fw"></i> Email </div>
+                        <div class="col-xs-3">
+                            <div class="form-control" style="border: 0;">
+                                <i class="fa fa-envelope-o fa-fw"></i> Email
+                            </div>
+                        </div>
                         <div class="col-xs-7">
                             <p class="form-control-static border-box">&nbsp;{{ $userinfo->email }}</p>
                         </div>
@@ -59,7 +76,11 @@
                               //-->
 
                     <div class="rows">
-                        <div class="col-xs-3"><i class="fa fa-location-arrow fa-fw"></i> Địa chỉ </div>
+                        <div class="col-xs-3">
+                            <div class="form-control" style="border: 0;">
+                                <i class="fa fa-location-arrow fa-fw"></i> Địa chỉ
+                            </div>
+                        </div>
                         <div class="col-xs-9 address_info">
                             <div class="col-xs-12">
                                 <input type="text" name="address" id="address" class="form-control" value="{{ $userinfo->user_address }}">
@@ -85,7 +106,11 @@
                     </div>
 
                     <div class="rows">
-                        <div class="col-xs-3"><i class="fa fa-phone fa-fw"></i> Điện thoại</div>
+                        <div class="col-xs-3">
+                            <div class="form-control" style="border: 0;">
+                                <i class="fa fa-phone fa-fw"></i> Điện thoại
+                            </div>
+                        </div>
                         <div class="col-xs-7">
                             <input type="text" name="phone" value="{{ $userinfo->user_phone }}" size="20" maxlength="20"
                                 class="form-control">
@@ -98,7 +123,9 @@
                                   </div>
                                   </div>-->
                     <div class="rows fixtop">
-                        <div class="col-xs-3"><i class="fa fa-picture-o fa-fw"></i> Avatar</div>
+                        <div class="col-xs-3">
+
+                        </div>
                         <center>
                             <div class="col-xs-7 fixtop">
                                 <img src="{{ asset( $userinfo->user_avatar ) }}" alt="" style="width: 100px; height: 100px;"

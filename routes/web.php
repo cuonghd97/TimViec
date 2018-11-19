@@ -40,8 +40,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/info/{id}', 'userController@info')->name('user.info');
     Route::post('/update/{id}', 'userController@update');
     Route::get('/index', 'postController@index');
-
-    Route::get('dang-tin', function() {
+    Route::get('/password/{id}', 'userController@idchangepass')->name('matkhau');
+    Route::post('/changepass/{id}', 'userController@changepass')->name('postpass');
+    Route::get('write-post', function() {
         return view('user.post');
     })->name('dangtin');
     Route::post('addpost', 'postController@addPost')->name('user.addpost');

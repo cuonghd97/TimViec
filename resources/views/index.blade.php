@@ -110,12 +110,14 @@
                         <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
                                 <div class="rvn-item-image text-center">
-                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 90px;">
+                                    <img src="{{ asset($item->image) }}" width="90" style="height: 90px;">
                                 </div>
                                 <div class="rvn-item-content">
-                                    <div class="rvn-item-title">{{$item->title}}</div>
                                     <div class="rvn-item-date">
-                                        <i class="fa fa-compass"></i> {{ $item->province }}
+                                        <i class="fa fa-paragraph fa-fw"></i>
+                                        {{$item->title}}</div>
+                                    <div class="rvn-item-date">
+                                        <i class="fa fa-compass fa-fw"></i> {{ $item->province }}
                                     </div>
                                     <div class="rvn-item-date">
                                         <i class="fa fa-clock-o fa-fw"></i> {{ $item->created_at }}
@@ -135,8 +137,8 @@
             </form>
             <div class="rows hidden-xs">
                 <div class="postad-category clearfix">XEM TIN THEO DANH MỤC</div>
-                @foreach ($swork as $item)
                 <div class="full-category clearfix">
+                    @foreach ($swork as $item)
                     <div class="category-list">
                         <div class="cate-name">
                             <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
@@ -156,8 +158,8 @@
                             @endforeach
                         </ul>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
             <!--<div class="rows hidden-xs">

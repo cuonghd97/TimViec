@@ -157,8 +157,8 @@
             </div>
             <div class="rows hidden-xs">
                 <div class="postad-category clearfix">XEM TIN THEO DANH MỤC</div>
-                @foreach ($swork as $item)
                 <div class="full-category clearfix">
+                     @foreach ($swork as $item)
                     <div class="category-list">
                         <div class="cate-name">
                             <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
@@ -178,8 +178,8 @@
                             @endforeach
                         </ul>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -261,7 +261,7 @@
     var list = []
     var m = $;
     $.ajax({
-        url: 'search/title',
+        url: '/search/title',
         type: 'GET',
         dataType: 'json',
         success: function (data) {

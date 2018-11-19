@@ -29,7 +29,6 @@ class postController extends Controller
         $sprovinces = Provinces::all();
         $swork = worktype::all();
         $workdetail = workdetail::all();
-
         return view('index', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
         // return view('index', ['posts' => $posts],);
     }

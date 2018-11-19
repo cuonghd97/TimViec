@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Tim nguoi giup viec</title>
+    <title>Tìm người giúp việc</title>
     <script src="https://697f684f1.vws.vegacdn.vn/rvn/init.js?v2018.10.15.7" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
@@ -88,7 +88,7 @@
                                     Thông tin tài khoản
                                 </a>
                             </li>
-                            <li><a href="/mat-khau"><i class="fa fa-key fa-fw"></i> Đổi mật khẩu</a></li>
+                            <li><a href="{{ action('userController@idchangepass', ['id'=>Auth::guard('user')->user()->id]) }}"><i class="fa fa-key fa-fw"></i> Đổi mật khẩu</a></li>
                             <li>
                                 <a href="{{ route('login') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

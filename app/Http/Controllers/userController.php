@@ -7,6 +7,8 @@ use App\User;
 use App\worktype;
 use App\Provinces;
 use App\Districts;
+use Crypt;
+use Hash;
 
 class userController extends Controller
 {
@@ -70,6 +72,7 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         //
@@ -100,7 +103,29 @@ class userController extends Controller
     {
         //
     }
-
+    // Lấy id
+    public function idchangepass($id){
+        $userinfo = User::find($id);
+        return view('user.changepass', compact(['userinfo']));
+    }
+    // Đổi mật khẩu
+    public function changepass(Request $req, $id){
+        $user = User::find($id);
+        $pass = Hash::check($req->currentpass, $user->password, []);
+        if ($pass == false)
+        return back()->with('message', 'Mật khẩu không khớp!');
+        else{
+            if ($req->newpass != $req->renewpass)
+            return back()->with('message', 'Mật khẩu nhập lại không khớp!');
+            else{
+                $user->password = bcrypt($req->newpass);
+                $user->save();
+                return back()->with('message', 'Đổi mật khẩu thành công!');
+            }
+        }
+        $decrypt = Crypt::decrypt($user->password);
+        dd($decrypt);
+    }
     public function info($id){
         $userinfo = User::find($id);
         $work = worktype::all();
