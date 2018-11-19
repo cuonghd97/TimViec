@@ -33,6 +33,7 @@ class postController extends Controller
         // return view('index', ['posts' => $posts],);
     }
 
+    // Guest search
     public function search(Request $request)
     {
         // dd($request->search_loca);

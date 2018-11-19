@@ -45,6 +45,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('write-post', function() {
         return view('user.post');
     })->name('dangtin');
+
     Route::post('addpost', 'postController@addPost')->name('user.addpost');
     // Data tỉnh dạng Json
     Route::get('provinces-data', function(){

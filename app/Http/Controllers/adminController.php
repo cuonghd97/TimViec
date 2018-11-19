@@ -87,7 +87,7 @@ class adminController extends Controller
         }
     }
 
-    // Xóa workdetail
+   // Xóa workdetail
     public function deleteworkdetail($id){
         workdetail::destroy($id);
     }
@@ -108,6 +108,4 @@ class adminController extends Controller
     public function deletepost($id) {
         posts::destroy($id);
     }
-
-
 }

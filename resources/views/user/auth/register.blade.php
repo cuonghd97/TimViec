@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Nhạp lại mật khẩu</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Nhập lại mật khẩu</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">

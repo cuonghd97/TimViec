@@ -74,7 +74,7 @@
                             <div class='cate-group main-cate-icon' style="margin-top: 40px;">
                                 <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
                                     <div>
-                                        <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 100px; height: 100px;">
+                                        <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 150px; height: 150px;">
                                     </div>
                                     <div class='cate-name'>{{ $item->work_type }}</div>
                                 </a>
@@ -107,7 +107,7 @@
                 <div class="clearfix">
                     <p>&nbsp;</p>
                 </div>
-                <div class="latest-items clearfix" style="margin-top: 50px;">
+                <div class="latest-items clearfix" style="margin-top: 100px;">
                     <i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
                 <div id="LISTITEMS">
                         @foreach ($posts as $item)
@@ -140,10 +140,10 @@
 
             </div>
             <div class="rows hidden-xs">
-                <div class="postad-category clearfix">ĐĂNG TIN NHANH THEO CHUYÊN MỤC</div>
+                {{-- <div class="postad-category clearfix">ĐĂNG TIN NHANH THEO CHUYÊN MỤC</div>
                 <div id="postad-icons" class="clearfix">
                     @foreach ($swork as $item)
-                    <a href='/dang-tin-11-Nha-cua-Dat-dai'>
+                    <a href='{{ route('postbywork', ['work' => $item->work_type]) }}'>
                         <div class='cate-group w20-md-w50-xs'>
                             <div>
                                 <img src="{{ asset($item->image) }}" class="img-thumbnail" style="width: 200px; height: 200px; border-radius: 25px;">
@@ -153,7 +153,7 @@
                     </a>
                     @endforeach
                     <div class="clearfix"></div>
-                </div>
+                </div> --}}
             </div>
             <div class="rows hidden-xs">
                 <div class="postad-category clearfix">XEM TIN THEO DANH MỤC</div>

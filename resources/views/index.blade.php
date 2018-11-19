@@ -74,7 +74,7 @@
                         <div class='cate-group main-cate-icon' style="margin-top: 40px;">
                             <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
                                 <div>
-                                    <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 100px; height: 100px;">
+                                    <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 150px; height: 150px;">
                                 </div>
                                 <div class='cate-name'>{{ $item->work_type }}</div>
                             </a>
@@ -102,7 +102,7 @@
                 <div class="clearfix">
                     <p>&nbsp;</p>
                 </div>
-                <div class="latest-items clearfix" style="margin-top: 50px;">
+                <div class="latest-items clearfix" style="margin-top: 100px;">
                     <i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
                 <div id="LISTITEMS">
                     @foreach ($posts as $item)
