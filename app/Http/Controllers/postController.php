@@ -262,7 +262,17 @@ class postController extends Controller
         $po->user_id = $request->user_id;
         $po->type_post = $request->typepost;
         $po->type = $request->type;
+        if ($request->type != "--Chọn--"){
+            $incre = worktype::where('work_type', 'like', $request->type)->first();
+            $incre->count +=1;
+            $incre->save();
+        }
         $po->detail = $request->detail;
+        if ($request->detail != "--Chọn--"){
+            $incre = workdetail::where('work_more', 'like', $request->detail)->first();
+            $incre->count +=1;
+            $incre->save();
+        }
         $po->title = $request->title;
         $po->content = $request->content;
         $po->address = $request->address;

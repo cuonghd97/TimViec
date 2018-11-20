@@ -104,7 +104,7 @@
                             <div class="col-xs-4">
                                     <div class="form-group">
                                         <label for="sel1">Số điện thoại:</label>
-                                        <input type="number" name="phone" id="phone" class="form-control" value="{{ $data->phone }}">
+                                        <input type="text" name="phone" id="phone" class="form-control" value="{{ $data->phone }}">
                                     </div>
                                 </div>
                         </fieldset>

@@ -71,7 +71,7 @@
                     <div class="clearfix"></div>
                     <div class="cate-icons rows " id="cateicons">
                             @foreach ($swork as $item)
-                            <div class='cate-group main-cate-icon' style="margin-top: 40px;">
+                            <div class='cate-group main-cate-icon' style="height: auto;">
                                 <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
                                     <div>
                                         <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 150px; height: 150px;">
@@ -107,7 +107,7 @@
                 <div class="clearfix">
                     <p>&nbsp;</p>
                 </div>
-                <div class="latest-items clearfix" style="margin-top: 100px;">
+                <div class="latest-items clearfix">
                     <i class="fa fa-stack-overflow fa-fw"></i> Tin tìm việc mới</div>
                 <div id="LISTITEMS">
                         @foreach ($posts as $item)
@@ -115,7 +115,7 @@
                         <a href="{{ action('postController@userviewpost', $item->id) }}" class="reload">
                             <div class="rounded-bo clearfix">
                                 <div class="rvn-item-image text-center">
-                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 90px;">
+                                    <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 55px;">
                                 </div>
                                 <div class="rvn-item-content">
                                     <div class="rvn-item-title">{{$item->title}}</div>
@@ -162,7 +162,7 @@
                     <div class="category-list">
                         <div class="cate-name">
                             <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
-                                {{ $item->work_type }}
+                                {{ $item->work_type }} ({{ $item->count }} bài đăng)
                             </a>
                         </div>
                         <ul class="category-ul">
@@ -172,7 +172,7 @@
                             @foreach ($workdetail as $item)
                             @if ( $wt == $item->work_id )
                             <li>
-                                <a href='{{ route('byworkuser', ['work' => $item->work_more]) }}'>{{$item->work_more}}</a>
+                                <a href='{{ route('byworkuser', ['work' => $item->work_more]) }}'>{{$item->work_more}} ({{ $item->count }}   bài đăng)</a>
                             </li>
                             @endif
                             @endforeach

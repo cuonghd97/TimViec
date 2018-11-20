@@ -17,6 +17,7 @@ class CreateWorkdetailsTable extends Migration
             $table->increments('id');
             $table->string('work_id', 191)->nullable();
             $table->string('work_more', 191)->nullable();
+            $table->integer('count')->default(0);
             $table->timestamps();
         });
     }
