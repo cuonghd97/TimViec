@@ -43,9 +43,12 @@ class UserResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
+        $token = $this->token;
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', url('user/password/reset', $this->token))
-            ->line('If you did not request a password reset, no further action is required.');
+            ->view('reset.email', compact(['token']))
+            ->subject( 'Đặt lại mật khẩu' );
+            //  ->line('Chúng tôi nhận được yêu cầu đặt lại mật khẩu từ tài khoản của bạn.')
+            // ->action('Đặt lại mật khẩu', url('user/password/reset', $this->token))
+            // ->line('Nếu bạn không yêu cầu đặt lại mật khẩu, bạn không cần hành động nào với email này.');
     }
 }

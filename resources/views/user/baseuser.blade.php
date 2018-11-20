@@ -20,6 +20,10 @@
                             </a>
                         </li>
                         <li class="list-menu">
+                            <a href="{{ route('notification', ['id'=>Auth::guard('user')->user()->id]) }}"><i class="fa fa-get-pocket fa-fw"></i> Đăng ký nhận tin mới
+                            </a>
+                        </li>
+                        <li class="list-menu">
                             <a href="{{ route('dangtin') }}"><i class="fa fa-commenting fa-fw"></i> Đăng tin
                             </a>
                         </li>

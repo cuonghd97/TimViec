@@ -13,6 +13,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DB;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use App\Mail\sendpost;
+use Illuminate\Support\Facades\Mail;
+use App\notification;
 
 class postController extends Controller
 {
@@ -119,11 +122,28 @@ class postController extends Controller
     }
     public function userpost()
     {
-        $posts = posts::paginate(18);
+        $posts = posts::paginate(15);
+        $allposts = posts::all();
         $sprovinces = Provinces::all();
         $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
         $swork = worktype::all();
+        foreach ($swork as $item) {
+            $count = 0;
+            foreach ($allposts as $post){
+                if ($post->type == $item->work_type) $count +=1;
+            }
+            $item->count = $count;
+            $item->save();
+        }
         $workdetail = workdetail::all();
+        foreach ($workdetail as $item) {
+            $count = 0;
+            foreach ($allposts as $post){
+                if ($post->detail == $item->work_more) $count +=1;
+            }
+            $item->count = $count;
+            $item->save();
+        }
     	return view('user.allposts', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
     }
 
@@ -230,16 +250,16 @@ class postController extends Controller
     }
 
     //Xem bài đăng cho guest
-    public function viewpost($id){
-        $post = posts::find($id);
+    public function viewpost($postid){
+        $post = posts::where('post_id', 'like', $postid)->first();
         $post->views +=1;
         $post->save();
         $name = User::where('user_id', $post->user_id)->first()->name;
         return view('viewpost', compact(['post', 'name']));
     }
     //Xem bài đăng cho user
-    public function userviewpost($id){
-        $post = posts::find($id);
+    public function userviewpost($postid){
+        $post = posts::where('post_id', 'like', $postid)->first();
         $post->views +=1;
         $post->save();
         $name = User::where('user_id', $post->user_id)->first()->name;
@@ -261,20 +281,32 @@ class postController extends Controller
     public function addPost(Request $request){
         $po = new posts();
         $po->post_id = uniqid();
+        $worksign = notification::where('work', 'like', $request->type)->get();
+        $emails = [];
+        $senid = ['id' => $po->post_id];
+        foreach ($worksign as $item) {
+            array_push($emails, $item->mail);
+        }
+        // dd($emails);
+        Mail::send('emails.users.getnotifications', $senid, function($message) use ($emails)
+        {
+            $message->to($emails)->subject('Bài đăng mới nhất');
+        });
         $po->user_id = $request->user_id;
         $po->type_post = $request->typepost;
         $po->type = $request->type;
-        if ($request->type != "--Chọn--"){
-            $incre = worktype::where('work_type', 'like', $request->type)->first();
-            $incre->count +=1;
-            $incre->save();
-        }
+        // if ($request->type != "--Chọn--"){
+        //     $incre = worktype::where('work_type', 'like', $request->type)->first();
+        //     // dd($incre);
+        //     $incre->count += 1;
+        //     $incre->save();
+        // }
         $po->detail = $request->detail;
-        if ($request->detail != "--Chọn--"){
-            $incre = workdetail::where('work_more', 'like', $request->detail)->first();
-            $incre->count +=1;
-            $incre->save();
-        }
+        // if ($request->detail != "--Chọn--"){
+        //     $incre = workdetail::where('work_more', 'like', $request->detail)->first();
+        //     $incre->count += 1;
+        //     $incre->save();
+        // }
         $po->title = $request->title;
         $po->content = $request->content;
         $po->address = $request->address;
@@ -301,5 +333,29 @@ class postController extends Controller
         $userid = Auth::guard('user')->user()->user_id;
         $data = posts::where('user_id', $userid)->get();
         return response()->json($data);
+    }
+
+    // Nhận bài mới
+    public function notification($id) {
+        $data = user::find($id);
+        // dd($data);
+        return view('user.notification', compact(['data']));
+    }
+    public function addnot(Request $req){
+        $data = new notification();
+        $data->work = $req->addwork;
+        $data->mail = User::where('user_id', 'like', $req->adduser)->first()->email;
+        $data->user_id = $req->adduser;
+        $checks = notification::where('work', 'like', $req->addwork)
+        ->where('user_id', 'like', $req->adduser)->count();
+        if ($checks != 0)
+        return response(200);
+        else
+        if($data->save()) {
+            return response($data, 200);
+        };
+    }
+    public function delnot($id) {
+        notification::destroy($id);
     }
 }

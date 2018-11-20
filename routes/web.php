@@ -13,7 +13,7 @@
 
 Route::get('/', 'postController@index')->name('guestallposts');
 Route::post('/search', 'postController@search')->name('search');
-Route::get('/viewpost/{id}', 'postController@viewpost')->name('viewpost');
+Route::get('/viewpost/{postid}', 'postController@viewpost')->name('viewpost');
 Route::get('loc-theo-cong-viec/{work}', 'postController@bywork')->name('bywork');
 Route::get('search/title', function() {
   $data = App\posts::all('title');
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/password/email', 'UserAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
     Route::post('/password/reset', 'UserAuth\ResetPasswordController@reset')->name('password.email');
     Route::get('/password/reset', 'UserAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-    Route::get('/password/reset/{token}', 'UserAuth\ResetPasswordController@showResetForm');
+    Route::get('/password/reset/{token}', 'UserAuth\ResetPasswordController@showResetForm')->name('reset.with.token');
 
     // Route::get('/info/{id}', function($id){
     //   return view('user.info');
@@ -47,6 +47,7 @@ Route::group(['prefix' => 'user'], function () {
     })->name('dangtin');
 
     Route::post('addpost', 'postController@addPost')->name('user.addpost');
+    Route::get('notification/{id}', 'postController@notification')->name('notification');
     // Data tỉnh dạng Json
     Route::get('provinces-data', function(){
         $data = App\Provinces::all('province_id', 'province_name');
@@ -69,6 +70,17 @@ Route::group(['prefix' => 'user'], function () {
       $data = App\workdetail::all();
       return response()->json($data);
     });
+    // Đăng ký bài đăng
+    Route::post('addnotification', 'postController@addnot');
+
+    // Nội dung đã đăng ký dạng json
+    Route::get('not-data', function() {
+      $data = App\notification::all();
+      return response()->json($data);
+    });
+
+    // Hủy đăng ký
+    Route::get('del-not/{id}', 'postController@delnot');
 
     Route::get('/index', 'postController@userpost')->name('user.index');
 
@@ -83,7 +95,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/editpost/{id}', 'postController@edit');
 
     Route::post('/updatepost/{id}', 'postController@update');
-    Route::get('/viewpost/{id}', 'postController@userviewpost')->name('user.viewpost');
+    Route::get('/viewpost/{postid}', 'postController@userviewpost')->name('user.viewpost');
 
     //Tất cả các bài đăng
     Route::get('/allposts', 'postController@userpost')->name('user.allposts');

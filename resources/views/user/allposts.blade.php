@@ -133,7 +133,7 @@
                 <div id="LISTITEMS">
                         @foreach ($posts as $item)
                     <div class="listItem" style="float: left;">
-                        <a href="{{ action('postController@userviewpost', $item->id) }}" class="reload">
+                        <a href="{{ action('postController@userviewpost', $item->post_id) }}" class="reload">
                             <div class="rounded-bo clearfix">
                                 <div class="rvn-item-image text-center">
                                     <img src="{{ asset($item->image) }}" class="rounded-bo" width="90" style="height: 55px;">
