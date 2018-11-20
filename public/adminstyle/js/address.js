@@ -147,4 +147,5 @@ $(document).ready(function () {
             }
         })
     }
+    $('#provinceslist_wrapper').removeClass('dataTables_wrapper')
 })

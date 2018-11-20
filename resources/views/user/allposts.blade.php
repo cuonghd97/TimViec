@@ -86,13 +86,34 @@
 
             </div>
         </div>
-        <div class="rows hidden" id="home_cate_paging2">
-            <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li id="view_cate">Loading...</li>
-                    <li id="view_subcate" class="active">Tất cả mục phụ</li>
-                </ol>
+        <div class="clearfix"></div>
+        <div class="latest-items clearfix"><i class="fa fa-eye fa-fw red"></i> Bài có lượt xem nhiều nhất</div>
+        <div id="LISTITEMS">
+            @foreach ($mostview as $item)
+            <div class="listItem" style="float: left;">
+                <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
+                    <div class="rounded-bo clearfix">
+                        <div class="rvn-item-image text-center">
+                            <img src="{{ asset($item->image) }}" width="90" style="height: 55px;">
+                        </div>
+                        <div class="rvn-item-content">
+                            <div class="rvn-item-date">
+                                <i class="fa fa-paragraph fa-fw"></i>
+                                {{$item->title}}</div>
+                            <div class="rvn-item-date">
+                                <i class="fa fa-compass fa-fw"></i> {{ $item->province }}
+                            </div>
+                            <div class="rvn-item-date">
+                                <i class="fa fa-clock-o fa-fw"></i> {{ $item->created_at }}
+                            </div>
+                            <div class="rvn-item-date ">
+                                <i class="fa fa-eye fa-fw"></i> {{ $item->views }}
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
+            @endforeach
         </div>
         <div class="cate-subs">
         </div>

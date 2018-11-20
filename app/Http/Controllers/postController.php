@@ -26,10 +26,11 @@ class postController extends Controller
     {
         //
         $posts = posts::paginate(15);
+        $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
         $sprovinces = Provinces::all();
         $swork = worktype::all();
         $workdetail = workdetail::all();
-        return view('index', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
+        return view('index', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
         // return view('index', ['posts' => $posts],);
     }
 
@@ -120,9 +121,10 @@ class postController extends Controller
     {
         $posts = posts::paginate(18);
         $sprovinces = Provinces::all();
+        $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
         $swork = worktype::all();
         $workdetail = workdetail::all();
-    	return view('user.allposts', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
+    	return view('user.allposts', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
     }
 
     /**
