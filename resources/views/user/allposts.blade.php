@@ -54,7 +54,7 @@
     <div class="container pgBody">
         <div class="rvn-home-category ">
             <div class="rows">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="cate-title " style="float:left" id="home-title"><a href="#"><i class="fa fa-rss fa-fw"></i></a>
                         Chuyên mục đăng tin <span class="hidden-xs" id="home-city-name"></span></div>
                     <div class="autoSearch pull-right visible-xs">
@@ -70,16 +70,16 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="cate-icons rows " id="cateicons">
-                            @foreach ($swork as $item)
-                            <div class='cate-group main-cate-icon' style="height: auto;">
-                                <a href='{{ route('byworkuser', ['work' => $item->work_type]) }}'>
-                                    <div>
-                                        <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 150px; height: 150px;">
-                                    </div>
-                                    <div class='cate-name'>{{ $item->work_type }}</div>
-                                </a>
-                            </div>
-                            @endforeach
+                        @foreach ($swork as $item)
+                        <div class='cate-group main-cate-icon' style="height: auto;">
+                            <a href='{{ route('bywork', ['work' => $item->work_type]) }}'>
+                                <div>
+                                    <img src="{{ asset($item->image) }}" style="border-radius: 25px; width: 150px; height: 150px;">
+                                </div>
+                                <div class='cate-name'>{{ $item->work_type }}</div>
+                            </a>
+                        </div>
+                        @endforeach
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
         <div id="LISTITEMS">
             @foreach ($mostview as $item)
             <div class="listItem" style="float: left;">
-                <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
+                <a href="{{ action('postController@viewpost', $item->post_id) }}" class="reload">
                     <div class="rounded-bo clearfix">
                         <div class="rvn-item-image text-center">
                             <img src="{{ asset($item->image) }}" width="90" style="height: 55px;">
@@ -219,62 +219,7 @@
         </div>
     </div>
 </div>
-<footer class="footer">
-    <div class="container">
-        <div class="rows ftr-4cols hidden-xs clearfix">
-            <div class="col-md-3 col-sm-4">
-                <div class="ftr-title">Thông tin liên hệ</div>
 
-            </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="ftr-title">Thông tin về trang web</div>
-            </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="ftr-title">Hướng dẫn</div>
-            </div>
-            <div class="col-md-3 hidden-sm">
-                <div class="ftr-title">Liên kết ưu tiên</div>
-            </div>
-        </div>
-        <div class="rows hidden-xs clearfix">
-            <div class="col-md-3 col-sm-4">
-
-                <div class="ftr-content">
-                    Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
-                        class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
-                    <div class="fb-icon"><a target="_blank" href="https://www.facebook.com/duccuongdc97">
-                            <i class="fa fa-facebook-official fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="ftr-content">
-                    <div><a href="/faq25/Quy-che-hoat-dong.html"><i class="fa fa-caret-right fa-fw"></i> Quy chế hoạt
-                            động</a></div>
-                    <div><a href="/faq23/Chinh-sach-bao-mat-thong-tin.html"><i class="fa fa-caret-right fa-fw"></i>
-                            Chính sách bảo mật thông tin</a></div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="ftr-content">
-                    <div><a href="/faq27/Huong-dan-dang-ky-thanh-vien.html"><i class="fa fa-caret-right fa-fw"></i>
-                            Hướng dẫn đăng ký thành viên</a></div>
-                    <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
-                            đăng tin</a></div>
-
-                </div>
-            </div>
-        </div>
-        <div class="ftr">
-            <div class="ftrCopyright">
-                <div class="CopyrightText">Bài tập lớn môn phát triển phần mềm hướng dịch vụ Trường Đại Học Công Nghiệp
-                    Hà Nội</div>
-            </div>
-        </div>
-    </div>
-</footer>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.js"></script>

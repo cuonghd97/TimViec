@@ -131,7 +131,7 @@
                             </div>
                         </div>
 
-                        
+
                         <!--<div class="site-user-address">
                             <div class="rows clearfix">
                                 <div class="col-xs-5 col-md-3">
@@ -145,7 +145,7 @@
 
                             </div>
                         </div>-->
-                        
+
                         <div class="site-user-info">
                             <div class="rows clearfix">
                                 <div class="col-xs-5 col-md-3">
@@ -179,12 +179,12 @@
     </div>
 
 </div>
-<footer class="footer">
+<!--<footer class="footer">
         <div class="container">
             <div class="rows ftr-4cols hidden-xs clearfix">
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-title">Thông tin liên hệ</div>
-    
+
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-title">Thông tin về trang web</div>
@@ -198,7 +198,7 @@
             </div>
             <div class="rows hidden-xs clearfix">
                 <div class="col-md-3 col-sm-4">
-    
+
                     <div class="ftr-content">
                         Địa chỉ: Nguyên Xá, Minh Khai, Bắc Từ Liêm, Hà Nội<br>ĐT: 0343944610<br>Email: <a href="mailto:duccuongdc97@gmail.com"
                             class="" classname="" target="_blank" name="">duccuongdc97@gmail.com</a>
@@ -207,7 +207,7 @@
                             </a>
                         </div>
                     </div>
-    
+
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="ftr-content">
@@ -223,7 +223,7 @@
                                 Hướng dẫn đăng ký thành viên</a></div>
                         <div><a href="/faq28/Huong-dan-dang-tin.html"><i class="fa fa-caret-right fa-fw"></i> Hướng dẫn
                                 đăng tin</a></div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -234,7 +234,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
     window.jQuery || document.write('<script src="/bootstrap/dist/js/jquery.min.js"><\/script>')

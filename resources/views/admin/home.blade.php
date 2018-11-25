@@ -40,10 +40,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <!-- Logo icon -->
-                        <b><img src="{{asset('adminstyle/images/logo.png')}}" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="{{asset('images/logo.png')}}" width="100" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="{{asset('adminstyle/images/logo-text.png')}}" alt="homepage" class="dark-logo" /></span>
+                        <!--<span><img src="{{asset('adminstyle/images/logo-text.png')}}" alt="homepage" class="dark-logo" /></span>-->
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -132,6 +132,18 @@
         @show
         <!-- End Page wrapper  -->
     </div>
+    <footer>
+    <div class="container">
+      <hr />
+        <div class="text-center center-block">
+            <p class="txt-railway">Bài tập lớn môn phát triển phần mềm hướng dịch vụ nhóm 2 - KTPM2 K10 - Đại học công nghiệp Hà Nội</p>
+            <p>Nguyễn Thị Cẩm Nhung - Nguyễn Thị Oanh - Hoàng Đức Cương</p>
+            <a href="https://www.facebook.com/duccuongdc97"><i class="fa   fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/HoangDucCuong2"><i class="fa fa-twitter-square fa-3x  social"></i></a>
+            <a href="mailto:duccuongdc97@gmail.com"><i class="fa fa-envelope-square fa-3x  social"></i></a>
+        </div>
+    </div>
+  </footer>
     <!-- End Wrapper -->
     <!-- All Jquery -->
     <script src="{{ asset('adminstyle/js/jquery-3.3.1.min.js') }}"></script>

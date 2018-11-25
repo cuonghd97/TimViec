@@ -59,6 +59,18 @@
   @section('pgContent')
 
   @show
+  <footer>
+    <div class="container">
+      <hr />
+        <div class="text-center center-block">
+            <p class="txt-railway">Bài tập lớn môn phát triển phần mềm hướng dịch vụ nhóm 2 - KTPM2 K10 - Đại học công nghiệp Hà Nội</p>
+            <p>Nguyễn Thị Cẩm Nhung - Nguyễn Thị Oanh - Hoàng Đức Cương</p>
+            <a href="https://www.facebook.com/duccuongdc97"><i class="fa   fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/HoangDucCuong2"><i class="fa fa-twitter-square fa-3x  social"></i></a>
+            <a href="mailto:duccuongdc97@gmail.com"><i class="fa fa-envelope-square fa-3x  social"></i></a>
+        </div>
+    </div>
+  </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>
     window.jQuery || document.write('<script src="/bootstrap/dist/js/jquery.min.js"><\/script>')

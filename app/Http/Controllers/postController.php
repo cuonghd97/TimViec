@@ -46,6 +46,7 @@ class postController extends Controller
         $sprovinces = Provinces::all();
         $swork = worktype::all();
         $workdetail = workdetail::all();
+        $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
 
         if ($request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')->paginate(15);
@@ -69,7 +70,7 @@ class postController extends Controller
         if ($request->searchdata == null && $request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         return redirect()->action('postController@index');
         else
-        return view('search', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
+        return view('search', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
     }
 
     // Trả về tỉnh về trang index của guest
@@ -85,6 +86,7 @@ class postController extends Controller
         $sprovinces = Provinces::all();
         $swork = worktype::all();
         $workdetail = workdetail::all();
+        $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
 
         if ($request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         $posts = posts::where('title', 'like', '%'.$request->searchdata.'%')->paginate(15);
@@ -108,17 +110,18 @@ class postController extends Controller
         if ($request->searchdata == null && $request->search_loca == 'Toàn quốc...' && $request->search_kat == 'Chọn...')
         return redirect()->action('postController@userpost');
         else
-        return view('user.search', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
+        return view('user.search', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
     }
     // Lọc theo loại công viêc
     public function bywork($work){
+        $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
         $posts = posts::where('type', 'like', $work)->paginate(15);
         if ($posts->count() == 0)
         $posts = posts::where('detail', 'like', $work)->paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
         $workdetail = workdetail::all();
-        return view('bywork', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
+        return view('bywork', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
     }
     public function userpost()
     {
@@ -268,13 +271,14 @@ class postController extends Controller
 
     // Lọc theo loại công viêc cho user
     public function byworkuser($work){
+        $mostview = posts::orderBy('views', 'DESC')->take(3)->get();
         $posts = posts::where('type', 'like', $work)->paginate(15);
         if ($posts->count() == 0)
         $posts = posts::where('detail', 'like', $work)->paginate(15);
         $sprovinces = Provinces::all();
         $swork = worktype::all();
         $workdetail = workdetail::all();
-        return view('user.bywork', compact(['sprovinces', 'posts', 'swork', 'workdetail']));
+        return view('user.bywork', compact(['sprovinces', 'posts', 'swork', 'workdetail', 'mostview']));
     }
 
     //Thêm bài đăng mới

@@ -91,7 +91,7 @@
         <div id="LISTITEMS">
             @foreach ($mostview as $item)
             <div class="listItem" style="float: left;">
-                <a href="{{ action('postController@viewpost', $item->id) }}" class="reload">
+                <a href="{{ action('postController@viewpost', $item->post_id) }}" class="reload">
                     <div class="rounded-bo clearfix">
                         <div class="rvn-item-image text-center">
                             <img src="{{ asset($item->image) }}" width="90" style="height: 55px;">
@@ -216,7 +216,7 @@
         </div>
     </div>
 </div>
-<footer class="footer">
+<!--<footer class="footer">
     <div class="container">
         <div class="rows ftr-4cols hidden-xs clearfix">
             <div class="col-md-3 col-sm-4">
@@ -266,12 +266,12 @@
         </div>
         <div class="ftr">
             <div class="ftrCopyright">
-                <div class="CopyrightText">Bài tập lớn môn phát triển phần mềm hướng dịch vụ Trường Đại Học Công Nghiệp
+                <div class="CopyrightText">Bài tập lớn môn phát triển phần mềm hướng dịch vụ nhóm 2 lớp kỹ thuật phần mềm 2-K10 Trường Đại Học Công Nghiệp
                     Hà Nội</div>
             </div>
         </div>
     </div>
-</footer>
+</footer>-->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.js"></script>
